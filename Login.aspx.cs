@@ -11,7 +11,7 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        FormsAuthentication.SignOut();
     }
 
     protected void Login1_LoggedIn(object sender, EventArgs e)

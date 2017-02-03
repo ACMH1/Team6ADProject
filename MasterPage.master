@@ -157,7 +157,7 @@ html {
     </ul>
     <ol class="nav navbar-nav navbar-right">
      
-    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    <li><a href="Login.aspx"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ol>
   </div>
 </nav>
@@ -171,7 +171,7 @@ html {
        <div class="col-sm-3">
             
           
-         <% if (Roles.RoleExists("storerk")) {%>
+      
            <asp:Menu ID="Menu1" runat="server" >
                <Items>
                    <asp:MenuItem Text="Retrieve Stock Card" Value="Retrieve Stock Card" NavigateUrl="Store/SCretrieveStockCard.aspx"></asp:MenuItem>
@@ -186,8 +186,8 @@ html {
                    <asp:MenuItem NavigateUrl="Store/SCselectStockSupplier.aspx" Text="Select Stock Card" Value="Select Stock Card"></asp:MenuItem>
                </Items>
            </asp:Menu>
-           <%}%>
-                <%else  if (Roles.RoleExists("storecrk")) {%>
+      
+           
            <asp:Menu ID="Menu2" runat="server" >
                <Items>
                    <asp:MenuItem Text="Issue Stock Adjustment Voucher" Value="Issue Stock Adjustment Voucher"></asp:MenuItem>
@@ -196,56 +196,46 @@ html {
                    <asp:MenuItem Text="Create Requisition Trend Analysis" Value="Create Requisition Trend Analysis"></asp:MenuItem>
                </Items>
            </asp:Menu>
-           <%}%>
-                   <%else if (Roles.RoleExists("kdjfbf")) {%>
+        
+                
            <asp:Menu ID="Menu3" runat="server" >
                <Items>
                    <asp:MenuItem Text="Issue Stock Adjustment Voucher" Value="Send Orders to Supplier"></asp:MenuItem>
                    <asp:MenuItem Text="Approve or Reject Order" Value="Recieve Order from Supplier"></asp:MenuItem>
-                   <asp:MenuItem Text="Select Stock Supplier" Value="Report Stock Discrepancy"></asp:MenuItem>
-                   <asp:MenuItem Text="Update Supplier Information" Value="Update Catalog"></asp:MenuItem>
                </Items>
            </asp:Menu>
-           <%}%>
-                        <%else if (Roles.RoleExists("deparloyee")) {%>
+        
+                     
            <asp:Menu ID="Menu4" runat="server" >
                <Items>
                    <asp:MenuItem Text="Request Items" Value="Send Orders to Supplier"></asp:MenuItem>
                    <asp:MenuItem Text="Edit Pending Requests" Value="Recieve Order from Supplier"></asp:MenuItem>
                </Items>
            </asp:Menu>
-           <%}%>
-                  <%else if (Roles.RoleExists("storeclerk")) {%>
-           <asp:Menu ID="Menu5" runat="server" >
+        
+              
+        <asp:Menu ID="Menu5" runat="server" >
                <Items>
                    <asp:MenuItem Text="Request Items" Value="Send Orders to Supplier"></asp:MenuItem>
-                  <%-- <asp:MenuItem Text="Accept Delivery" Value="Recieve Order from Supplier"></asp:MenuItem>--%>
-                   <asp:MenuItem Text="Set Collection Point" Value="Report Stock Discrepancy"></asp:MenuItem>
+               <asp:MenuItem Text="Set Collection Point" Value="Report Stock Discrepancy"></asp:MenuItem>
                    <asp:MenuItem Text="Edit Pending Request" Value="Update Catalog"></asp:MenuItem>
                </Items>
            </asp:Menu>
-           <%}%>
-                  <%else if (Roles.RoleExists("dfdf")) {%>
+         
+        
+      
+          
            <asp:Menu ID="Menu6" runat="server" >
                <Items>
                    <asp:MenuItem Text="Approve or Reject Request" Value="Send Orders to Supplier"></asp:MenuItem>
                    <asp:MenuItem Text="Assign Representatitve" Value="Recieve Order from Supplier"></asp:MenuItem>
                    <asp:MenuItem Text="Set Collection Point" Value="Report Stock Discrepancy"></asp:MenuItem>
-                 
-               </Items>
-           </asp:Menu>
-           <%}%>
-            <%else if (Roles.RoleExists("departmenthjhvhmead")) {%>
-           <asp:Menu ID="Menu7" runat="server" >
-               <Items>
-                   <asp:MenuItem Text="Approve or Reject Request" Value="Send Orders to Supplier"></asp:MenuItem>
-                   <asp:MenuItem Text="Assign Representatitve" Value="Recieve Order from Supplier"></asp:MenuItem>
-                   <asp:MenuItem Text="Set Collection Point" Value="Report Stock Discrepancy"></asp:MenuItem>
                     <asp:MenuItem Text="Delegate Authority" Value="Update Catalog"></asp:MenuItem>
+
                  
                </Items>
            </asp:Menu>
-           <%}%>
+      
            
            
            </div>

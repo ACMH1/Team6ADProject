@@ -19,7 +19,7 @@
        
     </table>
 
-<asp:GridView ID="GridView1" runat="server" CssClass="grid" style="z-index: 1; width: 578px; height: 255px; position: absolute; top: 211px; left: 87px" AutoGenerateColumns="False"
+<asp:GridView ID="GridView1" runat="server" CssClass="grid" style="z-index: 1; width: 578px; height: 255px; position: absolute; top: 211px; left: 87px" AutoGenerateColumns="False" 
     OnRowDataBound="OnRowDataBound" OnRowCommand="GridView1_RowCommand" OnPageIndexChanging="GridView1_PageIndexChanging" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" PageSize="8" AllowPaging="True">
     <AlternatingRowStyle BackColor="#CCCCCC" />
     <Columns>

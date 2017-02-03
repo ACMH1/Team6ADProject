@@ -19,20 +19,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             bindGridView();
       
       
-            string suppliername = DropDownList1.SelectedValue;
-
-            Supplier s = scService.getSupplierByName(suppliername);
-            Label.Text = s.address;
-            string suppliercode = s.suppliercode;
-
-            //List<string> itemcode = scService.getItemCodeBySupplierCode(suppliercode);
-            //List<Item> list = scService.getItemByListcode(itemcode);
-            //List<double> plist = scService.getPriceByListcode(itemcode);
-
-            List<dynamic> list = scService.getTenderQuotation(suppliercode).ToList();
-
-            GridView1.DataSource = list;
-            GridView1.DataBind();
+           
       
         }
     }
@@ -41,12 +28,26 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         List<string> slist = scService.getSuppliername();
         DropDownList1.DataSource = slist;
         DropDownList1.DataBind();
-        DropDownList1.SelectedIndex = 0;
+        //DropDownList1.SelectedIndex = 0;
+        string suppliername = DropDownList1.SelectedValue;
+
+        Supplier s = scService.getSupplierByName(suppliername);
+        Label.Text = s.address;
+        string suppliercode = s.suppliercode;
+
+        //List<string> itemcode = scService.getItemCodeBySupplierCode(suppliercode);
+        //List<Item> list = scService.getItemByListcode(itemcode);
+        //List<double> plist = scService.getPriceByListcode(itemcode);
+
+        List<dynamic> list = scService.getTenderQuotation(suppliercode).ToList();
+
+        GridView1.DataSource = list;
+        GridView1.DataBind();
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        //GridView1.PageIndex = e.NewPageIndex;
-        //bindGridView();
+        GridView1.PageIndex = e.NewPageIndex;
+        bindGridView();
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,7 +85,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int index = Convert.ToInt32(e.CommandArgument);
-        //bindGridView();
+        bindGridView();
         GridView1.Rows[index].Attributes.Add("style", "background-color:#FDCB0A");
         // GridView1.Rows[index].Attributes.Add("class", "mycustomclass");
     }
@@ -122,10 +123,11 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Item i = scService.getItemByItemdescription(GridView1.SelectedRow.Cells[0].Text);
-        TextBox1.Text = GridView1.SelectedRow.Cells[0].Text;
+        Item i = scService.getItemByItemdescription(GridView1.SelectedRow.Cells[0].Text.Replace("&quot;", "\""));
+        TextBox1.Text = GridView1.SelectedRow.Cells[0].Text.Replace("&quot;", "\"");
         TextBox2.Text = GridView1.SelectedRow.Cells[1].Text;
         TextBox3.Text = i.itemcode;
+  
     }
 
     protected void Save_Click(object sender, EventArgs e)
@@ -149,5 +151,4 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         scService.updateTenderQuotation(tq);
         Response.Redirect("SCupdateTenderInformation.aspx");
     }
-  
 }

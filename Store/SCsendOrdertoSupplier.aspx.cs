@@ -337,7 +337,8 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
             if (GridView1.Rows.Count == 0)
             {
                 int desiredSize = 0;
-
+                Button4.Visible = false;
+                Button2.Visible = false;
                 while (dt.Columns.Count > desiredSize)
                 {
                     dt.Columns.RemoveAt(desiredSize);
