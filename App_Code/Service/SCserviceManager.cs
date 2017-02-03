@@ -807,5 +807,10 @@ public class SCserviceManager
             return orders;
         }
     }
-
+    public List<DisbursementItem> findDeliverDisburseItemByDisburseid(string deptcode, string col)
+    {
+        List<DisbursementItem> items = new List<DisbursementItem>();
+        items = StoreDepartmentDAO.findDeliverDisburseItemByDisburseid(deptcode, col);
+        return items;
+    }
 }

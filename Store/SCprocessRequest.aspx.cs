@@ -51,6 +51,9 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Label1.Text = "Owed Request";
                 GridView1.DataSource = request2;
                 GridView1.DataBind();
+                Button2.Visible = false;
+                Button3.Visible = true;
+                Button1.Visible = true;
                 if (GridView1.Rows.Count == 0)
                 {
                     foreach (String i in unique)
@@ -61,6 +64,9 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     Label1.Text = "New Request";
                     GridView1.DataSource = request;
                     GridView1.DataBind();
+                    Button2.Visible = true;
+                    Button3.Visible = false;
+                    Button1.Visible = true;
                 }
 
             }
@@ -74,6 +80,9 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Label1.Text = "New Request";
                 GridView1.DataSource = request;
                 GridView1.DataBind();
+                Button2.Visible = true;
+                Button3.Visible = false;
+                Button1.Visible = true;
             }
 
             if (GridView1.Rows.Count == 2)
@@ -156,6 +165,9 @@ public partial class SCprocessRequest : System.Web.UI.Page
             else if (GridView1.Rows.Count == 0)
             {
                 Label1.Text = "No Request to Process";
+                Button2.Visible = false;
+                Button3.Visible = false;
+                Button1.Visible = false;
             }
         }
     }
@@ -513,6 +525,220 @@ public partial class SCprocessRequest : System.Web.UI.Page
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
+
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Button2.Visible = false;
+        Button3.Visible = true;
+        Button1.Visible = true;
+        List<String> unique2 = sc.getuniqueitems2();
+        List<dynamic> req2 = new List<dynamic>();
+        List<dynamic> request2 = new List<dynamic>();
+        if (unique2.Count != 0)
+        {
+
+            foreach (String i in unique2)
+            {
+                req2 = sc.getrequestdeptstatus2(i).ToList();
+                request2.AddRange(req2);
+            }
+            Label1.Text = "Owed Request";
+            GridView1.DataSource = request2;
+            GridView1.DataBind();
+
+        }
+        if (GridView1.Rows.Count == 2)
+        {
+            int i = 0;
+
+            if (GridView1.Rows[i].Cells[1].Text.Equals(GridView1.Rows[i + 1].Cells[1].Text) && GridView1.Rows[i].Cells[5].Text.Equals(GridView1.Rows[i + 1].Cells[5].Text))
+            {
+                int qty = Convert.ToInt32(GridView1.Rows[0].Cells[6].Text) + Convert.ToInt32(GridView1.Rows[1].Cells[6].Text);
+                GridView1.Rows[0].Cells[6].Text = qty.ToString();
+                GridView1.Rows[i + 1].Cells[0].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[1].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[2].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[3].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[4].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[5].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[6].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
+
+                // GridView1.DataBind();
+            }
+        }
+        else if (GridView1.Rows.Count > 2)
+        {
+
+            for (int i = 0; i < GridView1.Rows.Count - 1; i++)
+            {
+                if (GridView1.Rows[i].Cells[1].Text.Equals(GridView1.Rows[i + 1].Cells[1].Text) && GridView1.Rows[i].Cells[5].Text.Equals(GridView1.Rows[i + 1].Cells[5].Text))
+                {
+                    int qty = Convert.ToInt32(GridView1.Rows[i].Cells[6].Text) + Convert.ToInt32(GridView1.Rows[i + 1].Cells[6].Text);
+                    GridView1.Rows[i].Cells[6].Text = qty.ToString();
+                    GridView1.Rows[i].Cells[2].Text = qty.ToString();
+                    GridView1.Rows[i + 1].Cells[0].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[1].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[2].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[3].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[4].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[5].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[6].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
+
+                }
+            }
+        }
+        DataTable dt = new DataTable();
+        dt.Columns.Add("BIN");
+        dt.Columns.Add("DESCRIPTION");
+        dt.Columns.Add("QUANTITY");
+        dt.Columns.Add("ACTUALQTY");
+        dt.Columns.Add("REQUISITIONID");
+        dt.Columns.Add("DEPARTMENTNAME");
+        dt.Columns.Add("DEPTNEEDED");
+        dt.Columns.Add("ALLOCATED");
+        dt.Columns.Add("ITEMCODE");
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            if (GridView1.Rows[i].Cells[5].Text != "")
+                dt.Rows.Add(new object[] { GridView1.Rows[i].Cells[0].Text, GridView1.Rows[i].Cells[1].Text, GridView1.Rows[i].Cells[2].Text, GridView1.Rows[i].Cells[3].Text, GridView1.Rows[i].Cells[4].Text, GridView1.Rows[i].Cells[5].Text, GridView1.Rows[i].Cells[6].Text, GridView1.Rows[i].Cells[7].Text, GridView1.Rows[i].Cells[8].Text });
+        }
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+        if (GridView1.Rows.Count != 0)
+        {
+            GenerateUniqueData(0);
+
+
+            //getallocations();
+            GridView1.HeaderRow.Cells[8].Visible = false;
+            GridView1.HeaderRow.Cells[4].Visible = false;
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                GridView1.Rows[i].Cells[8].Visible = false;
+                GridView1.Rows[i].Cells[4].Visible = false;
+            }
+
+        }
+        else if (GridView1.Rows.Count == 0)
+        {
+            Label1.Text = "No Request to Process";
+            Button3.Visible = true;
+            Button1.Visible = false;
+        }
+
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Button3.Visible = false;
+        Button2.Visible = true;
+        List<String> unique = sc.getuniqueitems();
+        List<dynamic> req = new List<dynamic>();
+        List<dynamic> request = new List<dynamic>();
+        if (unique.Count != 0)
+        {
+            foreach (String i in unique)
+            {
+                req = sc.getrequestdeptstatus(i).ToList();
+                request.AddRange(req);
+            }
+            Label1.Text = "New Request";
+            GridView1.DataSource = request;
+            GridView1.DataBind();
+
+
+
+        }
+        if (GridView1.Rows.Count == 2)
+        {
+            int i = 0;
+
+            if (GridView1.Rows[i].Cells[1].Text.Equals(GridView1.Rows[i + 1].Cells[1].Text) && GridView1.Rows[i].Cells[5].Text.Equals(GridView1.Rows[i + 1].Cells[5].Text))
+            {
+                int qty = Convert.ToInt32(GridView1.Rows[0].Cells[6].Text) + Convert.ToInt32(GridView1.Rows[1].Cells[6].Text);
+                GridView1.Rows[0].Cells[6].Text = qty.ToString();
+                GridView1.Rows[i + 1].Cells[0].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[1].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[2].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[3].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[4].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[5].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[6].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
+                GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
+
+                // GridView1.DataBind();
+            }
+        }
+        else if (GridView1.Rows.Count > 2)
+        {
+
+            for (int i = 0; i < GridView1.Rows.Count - 1; i++)
+            {
+                if (GridView1.Rows[i].Cells[1].Text.Equals(GridView1.Rows[i + 1].Cells[1].Text) && GridView1.Rows[i].Cells[5].Text.Equals(GridView1.Rows[i + 1].Cells[5].Text))
+                {
+                    int qty = Convert.ToInt32(GridView1.Rows[i].Cells[6].Text) + Convert.ToInt32(GridView1.Rows[i + 1].Cells[6].Text);
+                    GridView1.Rows[i].Cells[6].Text = qty.ToString();
+                    GridView1.Rows[i].Cells[2].Text = qty.ToString();
+                    GridView1.Rows[i + 1].Cells[0].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[1].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[2].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[3].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[4].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[5].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[6].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
+                    GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
+
+                }
+            }
+        }
+        DataTable dt = new DataTable();
+        dt.Columns.Add("BIN");
+        dt.Columns.Add("DESCRIPTION");
+        dt.Columns.Add("QUANTITY");
+        dt.Columns.Add("ACTUALQTY");
+        dt.Columns.Add("REQUISITIONID");
+        dt.Columns.Add("DEPARTMENTNAME");
+        dt.Columns.Add("DEPTNEEDED");
+        dt.Columns.Add("ALLOCATED");
+        dt.Columns.Add("ITEMCODE");
+        for (int i = 0; i < GridView1.Rows.Count; i++)
+        {
+            if (GridView1.Rows[i].Cells[5].Text != "")
+                dt.Rows.Add(new object[] { GridView1.Rows[i].Cells[0].Text, GridView1.Rows[i].Cells[1].Text, GridView1.Rows[i].Cells[2].Text, GridView1.Rows[i].Cells[3].Text, GridView1.Rows[i].Cells[4].Text, GridView1.Rows[i].Cells[5].Text, GridView1.Rows[i].Cells[6].Text, GridView1.Rows[i].Cells[7].Text, GridView1.Rows[i].Cells[8].Text });
+        }
+        GridView1.DataSource = dt;
+        GridView1.DataBind();
+        if (GridView1.Rows.Count != 0)
+        {
+            GenerateUniqueData(0);
+
+
+            //getallocations();
+            GridView1.HeaderRow.Cells[8].Visible = false;
+            GridView1.HeaderRow.Cells[4].Visible = false;
+
+            for (int i = 0; i < GridView1.Rows.Count; i++)
+            {
+                GridView1.Rows[i].Cells[8].Visible = false;
+                GridView1.Rows[i].Cells[4].Visible = false;
+            }
+
+        }
+        else if (GridView1.Rows.Count == 0)
+        {
+            Label1.Text = "No Request to Process";
+            Button2.Visible = true;
+            Button1.Visible = false;
+
+        }
 
     }
 }

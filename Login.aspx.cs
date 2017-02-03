@@ -49,7 +49,7 @@ public partial class Login : System.Web.UI.Page
                 Response.Redirect("~/Department/DHRetriveAuthority.aspx");
                 break;
             case "storeclerk":
-                Response.Redirect("~/Store/retrieveStockCard.aspx");
+                Response.Redirect("~/Store/SCretrieveStockCard.aspx");
                 break;
             case "storesupervisor":
             case "storemanager":

@@ -28,7 +28,13 @@
                             <ItemTemplate>
 
                                 <asp:TextBox ID="Textfrom" runat="server" Style="width: 60px" CssClass="txtBoxNormalmedium" Text='<%# Bind("allocatedquantity") %>'></asp:TextBox>
-                            </ItemTemplate>
+                           <asp:RangeValidator ID="RangeValidator" runat="server"
+                                    ErrorMessage='<%#"Min-0 Max-"+ Eval("AllocatedQuantity") %>' ControlToValidate="Textfrom"
+                                    MaximumValue='<%# Eval("AllocatedQuantity") %>' MinimumValue="0" ForeColor="Red"
+                                    Display="Dynamic" ClientIDMode="Predictable" Type="Double" ValidationGroup="vg" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ControlToValidate="Textfrom" ErrorMessage="Value Required" ValidationGroup="vg"></asp:RequiredFieldValidator>
+                              
+                                 </ItemTemplate>
 
                         </asp:TemplateField>
                         <asp:BoundField HeaderText="disbursementid" DataField="disbursementid" />

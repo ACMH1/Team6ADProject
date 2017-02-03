@@ -243,4 +243,11 @@ public static class StoreDepartmentDAO
         return repcode;
 
     }
+    public static List<DisbursementItem> findDeliverDisburseItemByDisburseid(string deptcode, string col)
+    {
+        List<DisbursementItem> ditems = new List<DisbursementItem>();
+
+        ditems = ds.DisbursementItems.Where(x => x.Disbursement.deptcode == deptcode && x.Disbursement.Department.collectionpoint == col && x.Disbursement.collectiondate == null).ToList<DisbursementItem>();
+        return ditems;
+    }
 }

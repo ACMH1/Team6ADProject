@@ -14,9 +14,26 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
     //Populate data into dropdownlist
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        if (!IsPostBack)
         {
-            bindGridView();        
+            bindGridView();
+      
+      
+            string suppliername = DropDownList1.SelectedValue;
+
+            Supplier s = scService.getSupplierByName(suppliername);
+            Label.Text = s.address;
+            string suppliercode = s.suppliercode;
+
+            //List<string> itemcode = scService.getItemCodeBySupplierCode(suppliercode);
+            //List<Item> list = scService.getItemByListcode(itemcode);
+            //List<double> plist = scService.getPriceByListcode(itemcode);
+
+            List<dynamic> list = scService.getTenderQuotation(suppliercode).ToList();
+
+            GridView1.DataSource = list;
+            GridView1.DataBind();
+      
         }
     }
     private void bindGridView()
@@ -24,6 +41,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         List<string> slist = scService.getSuppliername();
         DropDownList1.DataSource = slist;
         DropDownList1.DataBind();
+        DropDownList1.SelectedIndex = 0;
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
