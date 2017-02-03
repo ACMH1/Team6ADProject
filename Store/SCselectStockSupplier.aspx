@@ -6,7 +6,7 @@
         <tr>
             <td class="modal-sm" style="width: 164px">&nbsp;<label class="labels">Item Code</label></td>
 
-            <td>&nbsp;<asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList></td>
+            <td>&nbsp;<asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList></td>
             <td class="modal-sm" style="width: 164px">&nbsp;<label class="labels"></label></td>
         </tr>
         <tr>
