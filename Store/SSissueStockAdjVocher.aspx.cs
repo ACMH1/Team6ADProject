@@ -81,17 +81,17 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
             case "Approve":
                 {
                     int poNum = adjs[Convert.ToInt32(e.CommandArgument)].vouchernumber;
-                    try
-                    {
-                        ssmanager.approveAdjustmentByVoucherNumber(poNum, role);
-                    }
-                    catch (SSexception ex)
-                    {
-                        Label1.Text = ex.Message;
-                    }
+                    //try
+                    //{
+                    ssmanager.approveAdjustmentByVoucherNumber(poNum, role);
+                        Label1.Text = String.Format("Adjustment voucher number {0} is approved by {1}.", poNum, SSserviceManager.findThreeworkingday(DateTime.Today).ToString("MM-dd-yyyy"));
+                        refreshGV2();
+                    //}
+                    //catch (SSexception ex)
+                    //{
+                    //    Label1.Text = ex.Message;
+                    //}
                     //ClassList.approveAdjVoucher(poNum);
-                    Label1.Text = String.Format("Adjustment voucher number {0} is approved by {1}.", poNum, SSserviceManager.findThreeworkingday(DateTime.Today).ToString("MM-dd-yyyy"));
-                    refreshGV2();
                     break;
                 }
             default:
