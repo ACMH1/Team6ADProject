@@ -78,9 +78,4 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Menu6.Visible = false;
         }
     }
-
-    protected void Unnamed1_Click(object sender, EventArgs e)
-    {
-
-    }
 }
