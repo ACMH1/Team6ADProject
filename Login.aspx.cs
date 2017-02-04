@@ -18,7 +18,7 @@ public partial class Login : System.Web.UI.Page
     {
         AdminserviceManager am = new AdminserviceManager();
         DHserviceManager dm = new DHserviceManager();
-        string userRole = Roles.GetRolesForUser(Login1.UserName)[0];
+        
         Department dept = am.FindEmployeebyID(Convert.ToInt32(Login1.UserName)).Department;
         if (dept.delegatecode.HasValue && dept.startdate.HasValue && dept.enddate.HasValue)
         {
@@ -35,6 +35,7 @@ public partial class Login : System.Web.UI.Page
             }
         }
 
+        string userRole = Roles.GetRolesForUser(Login1.UserName)[0];
         switch (userRole)
         {
             case "departmentemployee":

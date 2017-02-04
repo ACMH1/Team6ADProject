@@ -37,7 +37,9 @@
     <table style="width: 68%; z-index: 1; height: 316px; position: absolute; top: 421px; left: 233px; margin-top: 0px;">
         <tr>
             <td style="width: 217px" class="modal-sm">&nbsp;<label class="labels">Supplier Code</label></td>
-            <td style="width: 406px">&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>         
+            <td style="width: 406px">&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="field required" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>         
         </tr>
          <tr>
             <td style="width: 217px" class="modal-sm">&nbsp;<label class="labels">Supplier Name</label></td>

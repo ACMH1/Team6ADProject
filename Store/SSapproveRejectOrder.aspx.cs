@@ -17,133 +17,168 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        role = Convert.ToInt32(id.Name);
-        orders = ssmanager.findUnapprovedOrders();
-        GridView1.DataSource = null;
-        GridView1.DataBind();
-        if (!IsPostBack)
+        try
         {
-            if (orders.Count == 0)
+            IIdentity id = User.Identity;
+            role = Convert.ToInt32(id.Name);
+            orders = ssmanager.findUnapprovedOrders();
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+            if (!IsPostBack)
             {
-                Label1.Text = "No unapproved orders.";
-                LinkButton1.Visible = false;
-                LinkButton2.Visible = false;
-                TextBox1.Visible = false;
-                Label2.Visible = false;
+                if (orders.Count == 0)
+                {
+                    Label1.Text = "No unapproved orders.";
+                    LinkButton1.Visible = false;
+                    LinkButton2.Visible = false;
+                    TextBox1.Visible = false;
+                    Label2.Visible = false;
+                }
+                else
+                {
+                    refreshGV2();
+                }
             }
-            else
-            {
-                refreshGV2();
-            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
     }
 
     protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        switch (e.CommandName)
+        try
         {
-            case "Details":
-                {
-                    List<OrderItem> oitems = orders[Convert.ToInt32(e.CommandArgument)].OrderItems.ToList();
-                    if (oitems.Count != 0)
+            switch (e.CommandName)
+            {
+                case "Details":
                     {
-                        GridView1.DataSource = oitems;
-                        GridView1.DataBind();
-                        Label1.Text = "";
-                    }
-                    else
-                        Label1.Text = "No items found in order";
-                    break;
-                }
-            case "Reject":
-                {
-                    int poNum = orders[Convert.ToInt32(e.CommandArgument)].purchaseordernumber;
-
-                    try
-                    {
-                        if (TextBox1.Text.Trim() == "")
-                            ssmanager.deleteOrderByPurchaseOrder(poNum, role);
+                        List<OrderItem> oitems = orders[Convert.ToInt32(e.CommandArgument)].OrderItems.ToList();
+                        if (oitems.Count != 0)
+                        {
+                            GridView1.DataSource = oitems;
+                            GridView1.DataBind();
+                            Label1.Text = "";
+                        }
                         else
-                            ssmanager.deleteOrderByPurchaseOrder(poNum, role, TextBox1.Text);
+                            Label1.Text = "No items found in order";
+                        break;
                     }
-                    catch (SSexception ex)
+                case "Reject":
                     {
-                        Label1.Text = ex.Message;
+                        int poNum = orders[Convert.ToInt32(e.CommandArgument)].purchaseordernumber;
+
+                        try
+                        {
+                            if (TextBox1.Text.Trim() == "")
+                                ssmanager.deleteOrderByPurchaseOrder(poNum, role);
+                            else
+                                ssmanager.deleteOrderByPurchaseOrder(poNum, role, TextBox1.Text);
+                        }
+                        catch (SSexception ex)
+                        {
+                            Label1.Text = ex.Message;
+                        }
+                        Label1.Text = String.Format("Order {0} rejected.", poNum);
+                        refreshGV2();
+                        break;
                     }
-                    Label1.Text = String.Format("Order {0} rejected.", poNum);
-                    refreshGV2();
-                    break;
-                }
-            case "Approve":
-                {
-                    int poNum = orders[Convert.ToInt32(e.CommandArgument)].purchaseordernumber;
-                    try
+                case "Approve":
                     {
-                        ssmanager.approveOrderByPurchaseOrder(poNum, role);
+                        int poNum = orders[Convert.ToInt32(e.CommandArgument)].purchaseordernumber;
+                        try
+                        {
+                            ssmanager.approveOrderByPurchaseOrder(poNum, role);
+                        }
+                        catch (SSexception ex)
+                        {
+                            Label1.Text = ex.Message;
+                        }
+                        Label1.Text = String.Format("Order number {0} is approved and planned to deliver on {1}.", poNum, DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy"));
+                        refreshGV2();
+                        break;
                     }
-                    catch (SSexception ex)
+                default:
                     {
-                        Label1.Text = ex.Message;
+                        Label1.Text = "Sorry, please try again.";
+                        break;
                     }
-                    Label1.Text = String.Format("Order number {0} is approved and planned to deliver on {1}.", poNum, DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy"));
-                    refreshGV2();
-                    break;
-                }
-            default:
-                {
-                    Label1.Text = "Sorry, please try again.";
-                    break;
-                }
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        foreach (SOrder i in orders)
+        try
         {
-            try
+            foreach (SOrder i in orders)
             {
-                ssmanager.approveOrderByPurchaseOrder(i.purchaseordernumber, role);
+                try
+                {
+                    ssmanager.approveOrderByPurchaseOrder(i.purchaseordernumber, role);
+                }
+                catch (SSexception ex)
+                {
+                    Label1.Text = ex.Message;
+                }
             }
-            catch (SSexception ex)
-            {
-                Label1.Text = ex.Message;
-            }
+            refreshGV2();
+            Label1.Text = "All orders approved today and are planned to deliver on " + DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + ".";
         }
-        refreshGV2();
-        Label1.Text = "All orders approved today and are planned to deliver on " + DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + ".";
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
     protected void refreshGV2()
     {
-        orders = ssmanager.findUnapprovedOrders();
-        GridView2.DataSource = orders;
-        GridView2.DataBind();
+        try
+        {
+            orders = ssmanager.findUnapprovedOrders();
+            GridView2.DataSource = orders;
+            GridView2.DataBind();
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        foreach (SOrder i in orders)
+        try
         {
-            int poNum = i.purchaseordernumber;
-            string toemail = i.Employee.employeeemail;
-            toemail = "hellocomplex007@gmail.com";
-            //ClassList.deleteOrderByPurchaseOrder(poNum);
-            try
+            foreach (SOrder i in orders)
             {
-                if (TextBox1.Text.Trim() == "")
-                    ssmanager.deleteOrderByPurchaseOrder(poNum, role);
-                else
-                    ssmanager.deleteOrderByPurchaseOrder(poNum, role, TextBox1.Text);
+                int poNum = i.purchaseordernumber;
+                string toemail = i.Employee.employeeemail;
+                toemail = "hellocomplex007@gmail.com";
+                //ClassList.deleteOrderByPurchaseOrder(poNum);
+                try
+                {
+                    if (TextBox1.Text.Trim() == "")
+                        ssmanager.deleteOrderByPurchaseOrder(poNum, role);
+                    else
+                        ssmanager.deleteOrderByPurchaseOrder(poNum, role, TextBox1.Text);
+                }
+                catch (SSexception ex)
+                {
+                    Label1.Text = ex.Message;
+                }
+                refreshGV2();
             }
-            catch (SSexception ex)
-            {
-                Label1.Text = ex.Message;
-            }
+            TextBox1.Text = "";
             refreshGV2();
+            Label1.Text = "All orders have been rejected.";
         }
-        TextBox1.Text = "";
-        refreshGV2();
-        Label1.Text = "All orders have been rejected.";
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 }

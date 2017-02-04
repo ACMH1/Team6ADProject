@@ -21,7 +21,7 @@
     
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" Style="z-index: 1; width: 371px; height: 53px; position: absolute; top: 268px; left: 462px" ValidationGroup="vg" />
     <asp:RangeValidator ID="RangeValidator1" runat="server" Type="Integer" ControlToValidate="TextBox1" ErrorMessage="Range~Min-0 Max-400" MinimumValue="0" MaximumValue="400" Style="z-index: 1; position: absolute; top: 272px; left: 358px; height: 23px;" ForeColor="Red" ValidationGroup="vg">*</asp:RangeValidator>
-    <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; position: absolute; top: 269px; left: 268px"></asp:TextBox>
+    <asp:TextBox ID="TextBox1" runat="server" Style="z-index: 1; position: absolute; top: 269px; left: 268px; right: 964px;"></asp:TextBox>
     <asp:Label ID="Label6" CssClass="labels" runat="server" Style="z-index: 1; position: absolute; top: 270px; left: 160px" Text="Quantity"></asp:Label>
     <asp:Label ID="Label3" CssClass="labels" runat="server" Style="z-index: 1; position: absolute; top: 152px; left: 160px" Text="Supplier"></asp:Label>
 

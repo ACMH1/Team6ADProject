@@ -22,7 +22,7 @@
         <tr>
             <td class="modal-sm" style="width: 164px">&nbsp;<label class="labels">Supplier 3</label></td>
             <td class="modal-sm" style="width: 164px">&nbsp;<asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
-            <td>&nbsp;<asp:DropDownList ID="DropDownList4" runat="server"></asp:DropDownList>
+            <td>&nbsp;<asp:DropDownList ID="DropDownList4" runat="server" OnSelectedIndexChanged="DropDownList4_SelectedIndexChanged"></asp:DropDownList>
             </td>
             
         </tr>
@@ -31,6 +31,7 @@
             <td></td>
             <td>
                 <asp:Button ID="Update" runat="server" class="btn btn-success" Style="z-index: 1; position: relative;" Text="Update" OnClick="Update_Click" />
+                <asp:Label ID="Label4" runat="server"></asp:Label>
             </td>
         </tr>
     </table>

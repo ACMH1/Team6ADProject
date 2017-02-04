@@ -43,19 +43,28 @@
             <td style="width: 408px; height: 47px;">&nbsp;<label class="labels">Category</label></td>
             <td style="height: 47px">
                 <asp:TextBox ID="TextBox6" runat="server" Width="243px" style="margin-left: 26" ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox6" ErrorMessage="field required" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>        
         </tr>
         <tr>
             <td style="width: 408px; height: 48px;">&nbsp;<label class="labels">Description</label></td>
-            <td style="height: 48px">&nbsp;<asp:TextBox ID="TextBox2" runat="server" Width="636px" Height="27px" style="margin-left: 11"></asp:TextBox></td>           
+            <td style="height: 48px">&nbsp;<asp:TextBox ID="TextBox2" runat="server" Width="636px" Height="27px" style="margin-left: 11"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="field required" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>           
         </tr>
         <tr>
             <td style="width: 408px; height: 48px;">&nbsp;<label class="labels">Record Level</label></td>
-            <td style="height: 48px"><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>           
+            <td style="height: 48px"><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox3" ErrorMessage="field required" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="Please enter an integer" ForeColor="Red" Type="Integer"></asp:RangeValidator>
+            </td>           
         </tr>
            <tr>
             <td style="width: 408px; height: 48px;">&nbsp;<label class="labels">Record Quantity</label></td>
-            <td style="height: 48px"><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>           
+            <td style="height: 48px"><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="field required" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Please enter an integer" ForeColor="Red" Type="Integer"></asp:RangeValidator>
+               </td>           
         </tr>
          <tr>
             <td style="width: 408px; height: 48px;">&nbsp;<label class="labels">Unit of Measure</label></td>

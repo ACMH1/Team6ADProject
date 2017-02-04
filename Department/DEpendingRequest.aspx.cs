@@ -10,7 +10,6 @@ public partial class DEpendingRequest : System.Web.UI.Page
 {
 
     DEserviceManager eM = new DEserviceManager();
-    string category;
     int ecode;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -20,42 +19,45 @@ public partial class DEpendingRequest : System.Web.UI.Page
         List<dynamic> rRIL = new List<dynamic>();
         if (!IsPostBack)
         {
-
-            rRIL = eM.retreiveRequistionsItems(ecode);
-            bool isEmpty = !rRIL.Any();
-            if (isEmpty)
-            
+            try
             {
-                Label1.Visible = true;
-                Label1.Text = "No pending request";
-                
-            }
+                rRIL = eM.retreiveRequistionsItems(ecode);
+                bool isEmpty = !rRIL.Any();
+                if (isEmpty)
 
-            else
-            {
-                GridView1.DataSource = rRIL;
-                GridView1.DataBind();
-
-                GridView1.Columns[3].Visible = false;//rid
-                GridView1.Columns[4].Visible = false;//original qty
-                GridView1.Columns[5].Visible = false;//itemcode
-
-                foreach (GridViewRow row in GridView1.Rows)
                 {
-                    if (row.RowType == DataControlRowType.DataRow)
+                    Label1.Visible = true;
+                    Label1.Text = "No pending request";
+
+                }
+
+                else
+                {
+                    GridView1.DataSource = rRIL;
+                    GridView1.DataBind();
+
+                    GridView1.Columns[3].Visible = false;//rid
+                    GridView1.Columns[4].Visible = false;//original qty
+                    GridView1.Columns[5].Visible = false;//itemcode
+
+                    foreach (GridViewRow row in GridView1.Rows)
                     {
-                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                        if (!chkRow.Checked)
+                        if (row.RowType == DataControlRowType.DataRow)
                         {
-                            TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
-                            txtRow.ReadOnly = true;
+                            CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                            if (!chkRow.Checked)
+                            {
+                                TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
+                                txtRow.ReadOnly = true;
+                            }
                         }
                     }
                 }
             }
-            
-
-
+            catch
+            {
+                Response.Redirect("Error.aspx");
+            }
         }
 
     }
@@ -135,41 +137,49 @@ public partial class DEpendingRequest : System.Web.UI.Page
 
     protected void chkRow_CheckedChanged(object sender, EventArgs e)
     {
-        if (((CheckBox)sender).Checked)
+        try
         {
-            //txtBoxQty.Enable = true;
-            foreach (GridViewRow row in GridView1.Rows)
+            if (((CheckBox)sender).Checked)
             {
-                if (row.RowType == DataControlRowType.DataRow)
+                //txtBoxQty.Enable = true;
+                foreach (GridViewRow row in GridView1.Rows)
                 {
-                    CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                    if (chkRow.Checked)
+                    if (row.RowType == DataControlRowType.DataRow)
                     {
-                        TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
-                        txtRow.ReadOnly = false;
+                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                        if (chkRow.Checked)
+                        {
+                            TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
+                            txtRow.ReadOnly = false;
+                        }
                     }
                 }
+                System.Diagnostics.Debug.WriteLine("True");
+
+
             }
-            System.Diagnostics.Debug.WriteLine("True");
-
-
+            else
+            {
+                // txtBoxQty.Enable = false;
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                        if (!chkRow.Checked)
+                        {
+                            TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
+                            txtRow.ReadOnly = true;
+                        }
+                    }
+                }
+                System.Diagnostics.Debug.WriteLine("False");
+            }
         }
-        else
+
+        catch (Exception)
         {
-            // txtBoxQty.Enable = false;
-            foreach (GridViewRow row in GridView1.Rows)
-            {
-                if (row.RowType == DataControlRowType.DataRow)
-                {
-                    CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                    if (!chkRow.Checked)
-                    {
-                        TextBox txtRow = (row.Cells[2].FindControl("txtBoxQty") as TextBox);
-                        txtRow.ReadOnly=true;
-                    }
-                }
-            }
-            System.Diagnostics.Debug.WriteLine("False");
+            Response.Redirect("Error.aspx");
         }
     }
 
@@ -178,16 +188,5 @@ public partial class DEpendingRequest : System.Web.UI.Page
     {
         //GridView1.PageIndex = e.NewPageIndex;
         //BindData();
-    }
-}
-public static class MessageBox
-{
-    public static void Show(this Page Page, string Message)
-    {
-        Page.ClientScript.RegisterStartupScript(
-           Page.GetType(),
-           "MessageBox",
-           "<script language='javascript'>alert('" + Message + "');</script>"
-        );
     }
 }

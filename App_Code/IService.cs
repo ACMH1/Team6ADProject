@@ -233,6 +233,65 @@ public interface IService
     //  "Employeename": "Aparna",
     //  "Role": "departmentrepresentative"
     //}
+    [OperationContract]
+    [WebInvoke(UriTemplate = "/login", Method = "POST",
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json)]
+    string Login(WCFLogin login);
+    [OperationContract]
+    [WebGet(UriTemplate = "/getuniqueitems", ResponseFormat = WebMessageFormat.Json)]
+    string[] getuniqueitems();
+    //JSON example:[
+    //"F021",
+    //"F035",
+    //"H011",
+    //"S011",
+    //"S012",
+    //"S021",
+    //"S101",
+    //"C001",
+    //"E004"]
+
+    [OperationContract]
+    [WebGet(UriTemplate = "/getuniqueitems2", ResponseFormat = WebMessageFormat.Json)]
+    string[] getuniqueitems2();
+    //JSON example: same with string[] getuniqueitems()
+
+    [OperationContract]
+    [WebGet(UriTemplate = "/getrequestdeptstatus2/{item}", ResponseFormat = WebMessageFormat.Json)]
+    List<WCFRequestDept> getrequestdeptstatus2(string item);
+    //JSON example:[
+    //  {
+    //    "Allocatedquantity": 9,
+    //    "Bin": "B9",
+    //    "Deptname": "Computer Science",
+    //    "Deptneededquantity": 9,
+    //    "Itemcode": "E032",
+    //    "Itemdescription": "Exercise Book A4 Hardcover (100 pg)",
+    //    "Quantityonhand": 120,
+    //    "Requisitionid": 13
+    //  },
+    //  {
+    //    "Allocatedquantity": 51,
+    //    "Bin": "B9",
+    //    "Deptname": "Commerce Dept",
+    //    "Deptneededquantity": 51,
+    //    "Itemcode": "E032",
+    //    "Itemdescription": "Exercise Book A4 Hardcover (100 pg)",
+    //    "Quantityonhand": 120,
+    //    "Requisitionid": 14
+    //  }
+    //]
+    [OperationContract]
+    [WebGet(UriTemplate = "/getrequestdeptstatus/{item}", ResponseFormat = WebMessageFormat.Json)]
+    List<WCFRequestDept> getrequestdeptstatus(string item);
+
+    [OperationContract]
+    [WebInvoke(UriTemplate = "/getrequestdeptstatus/send", Method = "POST",
+     RequestFormat = WebMessageFormat.Json,
+     ResponseFormat = WebMessageFormat.Json)]
+    void sendRequestDepts(List<WCFRequestDept> rdlist);
+
 }
 [DataContract]
 public class WCFDepartment
@@ -475,14 +534,20 @@ public class WCFDisbursementItem
     string itemcode;
     int allocatedquantity;
     int? actualquantity;
+    string supplier1;
+    string supplier2;
+    string supplier3;
 
-    public static WCFDisbursementItem Make(int disbursementid, string itemcode, int allocatedquantity, int? actualquantity)
+    public static WCFDisbursementItem Make(int disbursementid, string itemcode, int allocatedquantity, int? actualquantity, string supplier1, string supplier2, string supplier3)
     {
         WCFDisbursementItem ditem = new WCFDisbursementItem();
         ditem.disbursementid = disbursementid;
         ditem.itemcode = itemcode;
         ditem.allocatedquantity = allocatedquantity;
         ditem.actualquantity = actualquantity;
+        ditem.Supplier1 = supplier1;
+        ditem.Supplier2 = supplier2;
+        ditem.Supplier3 = supplier3;
         return ditem;
     }
 
@@ -536,6 +601,45 @@ public class WCFDisbursementItem
         set
         {
             actualquantity = value;
+        }
+    }
+    [DataMember]
+    public string Supplier1
+    {
+        get
+        {
+            return supplier1;
+        }
+
+        set
+        {
+            supplier1 = value;
+        }
+    }
+    [DataMember]
+    public string Supplier2
+    {
+        get
+        {
+            return supplier2;
+        }
+
+        set
+        {
+            supplier2 = value;
+        }
+    }
+    [DataMember]
+    public string Supplier3
+    {
+        get
+        {
+            return supplier3;
+        }
+
+        set
+        {
+            supplier3 = value;
         }
     }
 }
@@ -1006,20 +1110,19 @@ public class WCFEmployee
 [DataContract]
 public class WCFLogin
 {
-    string username;
+    int usercode;
     string password;
-    string token;
     [DataMember]
-    public string Username
+    public int Usercode
     {
         get
         {
-            return username;
+            return usercode;
         }
 
         set
         {
-            username = value;
+            usercode = value;
         }
     }
     [DataMember]
@@ -1035,26 +1138,14 @@ public class WCFLogin
             password = value;
         }
     }
-    [DataMember]
-    public string Token
-    {
-        get
-        {
-            return token;
-        }
 
-        set
-        {
-            token = value;
-        }
-    }
 
-    public static WCFLogin Make(string username, string password, string token)
+
+    public static WCFLogin Make(int usercode, string password)
     {
         WCFLogin item = new WCFLogin();
-        item.Username = username;
+        item.Usercode = usercode;
         item.Password = password;
-        item.Token = token;
         return item;
     }
 

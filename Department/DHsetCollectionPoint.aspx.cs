@@ -14,19 +14,33 @@ public partial class DHsetCollectionPoint : System.Web.UI.Page
     Department d1;
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        code = Convert.ToInt32(id.Name);
-        if (!IsPostBack)
+        try
         {
-            d1=d.DHfindCurrentCollectionPoint(code);
-            Label3.Text = d1.collectionpoint;
+            IIdentity id = User.Identity;
+            code = Convert.ToInt32(id.Name);
+            if (!IsPostBack)
+            {
+                d1 = d.DHfindCurrentCollectionPoint(code);
+                Label3.Text = d1.collectionpoint;
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string SelectedValue = RadioButtonList1.SelectedValue;
-        Label3.Text = SelectedValue;
-        d.DHupdateCollectionPoint(SelectedValue, code);
+        try
+        {
+            string SelectedValue = RadioButtonList1.SelectedValue;
+            Label3.Text = SelectedValue;
+            d.DHupdateCollectionPoint(SelectedValue, code);
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 }

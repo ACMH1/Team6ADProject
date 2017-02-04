@@ -25,10 +25,10 @@
             <td class="modal-lg" style="width: 1225px; height: 30px;">
                 <asp:Label ID="Label1" class="labels" runat="server" Style="z-index: 1; position: relative"></asp:Label>
             </td>
-            <td style="width: 621px; height: 30px;" align ="right">
+            <td align ="right">
                 <asp:LinkButton ID="LinkButton2" runat="server" class="btn btn-danger" OnClick="LinkButton2_Click" Font-Size="Large" ForeColor="White">Reject All</asp:LinkButton>
             </td>
-            <td style="width: 147px; height: 30px;" align ="right">
+            <td align ="right">
                 <asp:LinkButton ID="LinkButton1" runat="server" class="btn btn-success" OnClick="LinkButton1_Click" Font-Size="Large" ForeColor="White">Approve All</asp:LinkButton>
             </td>
         </tr>
@@ -46,7 +46,6 @@
             <td style="width: 147px">
                 <asp:TextBox ID="TextBox1" runat="server" Height="70px" Width="271px" Style="margin-top: 29"></asp:TextBox>
             </td>
-            <td></td>
         </tr>
     </table>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeFile="SSissueStockAdjVocher.aspx.cs" Inherits="SSissueStockAdjVocher" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeFile="SSissueStockAdjVoucher.aspx.cs" Inherits="SSissueStockAdjVocher" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Issue Stock Adjustment Vouchers</h3>
@@ -29,10 +29,10 @@
                 <td class="modal-lg" style="width: 1707px; height: 30px;">
                     <asp:Label ID="Label1" runat="server" class="labels" Style="z-index: 1; position: relative"></asp:Label>
                 </td>
-                <td style="width: 684px; height: 30px;" align="right">
+                <td align="right">
                     <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-danger" OnClick="LinkButton2_Click">Reject All</asp:LinkButton>
                 </td>
-                <td style="width: 135px; height: 30px;" align="right">
+                <td align="right">
                     <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-success" OnClick="LinkButton1_Click">Approve All</asp:LinkButton>
                 </td>
             </tr>
@@ -51,7 +51,6 @@
                 <td style="width: 135px">
                     <asp:TextBox ID="TextBox1" runat="server" Height="70px" Width="271px" Style="margin-top: 29"></asp:TextBox>
                 </td>
-                <td></td>
             </tr>
         </table>
 

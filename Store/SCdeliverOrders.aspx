@@ -15,8 +15,7 @@
     <table style="position: absolute; top: 255px; left: 90px">
         <tr>
             <td>
-                <asp:GridView ID="GridView1" CssClass="grid" runat="server" Style="z-index: 1; width: 737px; height: 151px; position: relative;" AutoGenerateColumns="False"
-                    OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                <asp:GridView ID="GridView1" CssClass="grid" runat="server" Style="z-index: 1; width: 737px; height: 151px; position: relative;" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
 
                     <AlternatingRowStyle BackColor="#CCCCCC" />
 

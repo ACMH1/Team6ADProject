@@ -7,7 +7,7 @@ using System.Web.UI;
 /// <summary>
 /// Summary description for MessageBox1
 /// </summary>
-public static class MessageBox1
+public static class MessageBox
 {
     public static void Show(Page Page, string Message)
     {

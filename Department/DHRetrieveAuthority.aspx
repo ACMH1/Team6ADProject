@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DHRetriveAuthority.aspx.cs" Inherits="RetriveAuthority" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DHRetrieveAuthority.aspx.cs" Inherits="RetriveAuthority" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center><h1 style="color:darkblue;font-weight:bold;">Retrieve Authority</h1></center>

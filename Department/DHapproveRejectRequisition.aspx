@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DHapproveReject.aspx.cs" Inherits="DHapproveReject" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DHapproveRejectRequisition.aspx.cs" Inherits="DHapproveReject" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center><h1 style="color:darkblue;font-weight:bold;">Approve Reject</h1></center>

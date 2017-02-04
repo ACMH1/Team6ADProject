@@ -15,28 +15,42 @@ public partial class DHassignRepresentative : System.Web.UI.Page
     DHserviceManager d = new DHserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(id.Name);
-        e1 = d.getDepartmentRepresentative(headcode);
-        if (!IsPostBack)
+        try
         {
-            
-            List<Employee> elist = d.PopulateEmpList(headcode);
-            DropDownList1.DataSource = elist;
-            DropDownList1.DataTextField = "employeename";
-            DropDownList1.DataValueField = "employeecode";
-            DropDownList1.DataBind();
-            
-           Label1.Text = e1.employeename;          
+            IIdentity id = User.Identity;
+            headcode = Convert.ToInt32(id.Name);
+            e1 = d.getDepartmentRepresentative(headcode);
+            if (!IsPostBack)
+            {
+
+                List<Employee> elist = d.PopulateEmpList(headcode);
+                DropDownList1.DataSource = elist;
+                DropDownList1.DataTextField = "employeename";
+                DropDownList1.DataValueField = "employeecode";
+                DropDownList1.DataBind();
+
+                Label1.Text = e1.employeename;
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
 
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Label1.Text = DropDownList1.SelectedItem.Text;
-        int selectedVal = Convert.ToInt32(DropDownList1.SelectedValue);
-        d.setRepresentative(selectedVal);        
-        d.changePreviousRepresentative(e1.employeecode);
+        try
+        {
+            Label1.Text = DropDownList1.SelectedItem.Text;
+            int selectedVal = Convert.ToInt32(DropDownList1.SelectedValue);
+            d.setRepresentative(selectedVal);
+            d.changePreviousRepresentative(e1.employeecode);
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 }

@@ -727,10 +727,9 @@ public class SCserviceManager
         return count;
     }
 
-    public void updaterequisition(int reqid, int approvercode)
+    public void updaterequisition(int reqid)
     {
         Requisition req = sce.Requisitions.Where(x => x.requisitionid == reqid).First();
-        req.approvercode = approvercode;
         req.approvaldate = DateTime.Now;
         req.status = 1;
         sce.SaveChanges();

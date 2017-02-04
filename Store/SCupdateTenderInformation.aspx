@@ -43,13 +43,13 @@
 
 
 
-    <table style="width: 41%; z-index: 1; height: 166px; position: absolute; top: 475px; left: 93px;">
+    <table style="position: absolute; top: 475px; left: 93px;">
        <tr>
             <td style="width: 256px">
                <asp:Label ID="Label3" CssClass="labels" runat="server" style="z-index: 1;  top: 114px; left: 128px; width: 22px;" Text="ItemCode"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; position: absolute; top: 19px; left: 266px; width: 241px"></asp:TextBox>
+                <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; position: relative; width: 240px"></asp:TextBox>
             </td>
            
         </tr>
@@ -58,7 +58,7 @@
                 <asp:Label ID="Label1" CssClass="labels" runat="server" style="z-index: 1;  top: 40px; left: 94px" Text="ItemDescription"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; position: absolute; top: 73px; left: 265px; width: 239px"></asp:TextBox>
+                <asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; position: relative; width: 240px"></asp:TextBox>
             </td>
            
         </tr>
@@ -67,7 +67,8 @@
                <asp:Label ID="Label2" CssClass="labels" runat="server" style="z-index: 1;  top: 114px; left: 128px; width: 22px;" Text="Price"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; position: absolute; top: 128px; left: 264px; width: 241px; margin-top: 0;"></asp:TextBox>
+                <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; position: relative; width: 240px; margin-top: 0;"></asp:TextBox>
+                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Price needs to be a number" ControlToValidate="TextBox2" ForeColor="Red" Type="Currency"></asp:CompareValidator>
             </td>
            
         </tr>

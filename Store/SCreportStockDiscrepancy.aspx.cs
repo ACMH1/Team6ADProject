@@ -19,35 +19,57 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        role = Convert.ToInt32(id.Name);
-        if (!IsPostBack) { 
-           
-            List<string> slist = scService.getSuppliercode();
-            DropDownList2.DataSource = slist;
-            DropDownList2.DataBind();
+        try
+        {
+            IIdentity id = User.Identity;
+            role = Convert.ToInt32(id.Name);
+            if (!IsPostBack)
+            {
 
-            List<string> list = scService.getItemCodeBySupplierCode(DropDownList2.SelectedValue);
-            DropDownList1.DataSource = list;
-            DropDownList1.DataBind();
+                List<string> slist = scService.getSuppliercode();
+                DropDownList2.DataSource = slist;
+                DropDownList2.DataBind();
 
-            Calendar1.SelectedDate = DateTime.Today;
+                List<string> list = scService.getItemCodeBySupplierCode(DropDownList2.SelectedValue);
+                DropDownList1.DataSource = list;
+                DropDownList1.DataBind();
+
+                Calendar1.SelectedDate = DateTime.Today;
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
 
     }
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        List<string> list = scService.getItemCodeBySupplierCode(DropDownList2.SelectedValue);
-        DropDownList1.DataSource = list;
-        DropDownList1.DataBind();
+        try
+        {
+            List<string> list = scService.getItemCodeBySupplierCode(DropDownList2.SelectedValue);
+            DropDownList1.DataSource = list;
+            DropDownList1.DataBind();
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Item i = scService.getItem(DropDownList1.SelectedValue);
-        TextBox1.Text = i.category;
-        TextBox2.Text = i.itemdescription;
-        TextBox3.Text = Convert.ToString(i.quantityonhand);
+        try
+        {
+            Item i = scService.getItem(DropDownList1.SelectedValue);
+            TextBox1.Text = i.category;
+            TextBox2.Text = i.itemdescription;
+            TextBox3.Text = Convert.ToString(i.quantityonhand);
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 
     protected void DateSelectedChanged(object sender, EventArgs e)
@@ -57,55 +79,69 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        AdjustmentItem ait = new AdjustmentItem();
-            
-        ait.itemcode = DropDownList1.SelectedValue;
-        ait.quantity = Convert.ToInt32(TextBox4.Text);
-        ait.reason = TextBox5.Text;
+        try
+        {
+            AdjustmentItem ait = new AdjustmentItem();
 
-        bool isinalist = false;
-        foreach (AdjustmentItem ai in avoucher.AdjustmentItems)
-        {
-            if (ai.itemcode == ait.itemcode)
+            ait.itemcode = DropDownList1.SelectedValue;
+            ait.quantity = Convert.ToInt32(TextBox4.Text);
+            ait.reason = TextBox5.Text;
+
+            bool isinalist = false;
+            foreach (AdjustmentItem ai in avoucher.AdjustmentItems)
             {
-                isinalist = true;
-                break;
+                if (ai.itemcode == ait.itemcode)
+                {
+                    isinalist = true;
+                    break;
+                }
             }
+            if (!isinalist)
+            {
+                alist.Add(ait);
+                avoucher.AdjustmentItems.Add(ait);
+            }
+            else
+            {
+                AdjustmentItem ai = avoucher.AdjustmentItems.Where(x => x.itemcode == ait.itemcode).First();
+                ai.quantity = ai.quantity + ait.quantity;
+            }
+            GridView1.DataSource = alist;
+            GridView1.DataBind();
+            double price = scService.getTenderQuotationByKey(DropDownList2.SelectedValue, DropDownList1.SelectedValue).price;
+            cost = cost + price * Convert.ToInt32(TextBox4.Text);
+            TextBox4.Text = "";
+            TextBox5.Text = "";
         }
-        if (!isinalist)
+        catch (Exception)
         {
-            alist.Add(ait);
-            avoucher.AdjustmentItems.Add(ait);
+            Response.Redirect("Error.aspx");
         }
-        else
-        {
-            AdjustmentItem ai = avoucher.AdjustmentItems.Where(x => x.itemcode == ait.itemcode).First();
-            ai.quantity = ai.quantity + ait.quantity;
-        }
-        GridView1.DataSource = alist;
-        GridView1.DataBind();
-        double price = scService.getTenderQuotationByKey(DropDownList2.SelectedValue, DropDownList1.SelectedValue).price;
-        cost = cost + price * Convert.ToInt32(TextBox4.Text);
-        TextBox4.Text = "";
-        TextBox5.Text = "";
     }
 
     protected void Report_Click(object sender, EventArgs e)
     {
-        //AdjustmentVoucher avoucher = new AdjustmentVoucher();
-        avoucher.issuedate=Calendar1.SelectedDate;
-        avoucher.cost = cost;
-        avoucher.clerkcode = role;
+        try
+        {
+            //AdjustmentVoucher avoucher = new AdjustmentVoucher();
+            avoucher.issuedate = Calendar1.SelectedDate;
+            avoucher.cost = cost;
+            avoucher.clerkcode = role;
 
-        scService.adjustItem(avoucher);
-        GridView1.DataSource = null;
-        GridView1.DataBind();
-        TextBox1.Text = "";
-        TextBox2.Text = "";
-        TextBox3.Text = "";
-        TextBox4.Text = "";
-        TextBox5.Text = "";
-        Response.Write("<script>alert('Adjustment sent.');</script>");
+            scService.adjustItem(avoucher);
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            Response.Write("<script>alert('Adjustment sent.');</script>");
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 
 

@@ -13,22 +13,29 @@ public partial class SCretrieveStockCard : System.Web.UI.Page
     SCserviceManager sc = new SCserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        try
         {
-            DropDownList1.DataBind();
-            DropDownList1.SelectedIndex = 0;
-            Item item = sc.getitemdetails(DropDownList1.SelectedItem.Text);
-            Label2.Text = item.itemdescription;
-            Label3.Text = item.bin;
-            Label4.Text = item.unitofmeasure;
-            Label5.Text = item.supplier1;
-            Label6.Text = item.supplier2;
-            Label7.Text = item.supplier3;
+            if (!IsPostBack)
+            {
+                DropDownList1.DataBind();
+                DropDownList1.SelectedIndex = 0;
+                Item item = sc.getitemdetails(DropDownList1.SelectedItem.Text);
+                Label2.Text = item.itemdescription;
+                Label3.Text = item.bin;
+                Label4.Text = item.unitofmeasure;
+                Label5.Text = item.supplier1;
+                Label6.Text = item.supplier2;
+                Label7.Text = item.supplier3;
 
-            List<Transaction> trans = sc.gettransactions(DropDownList1.SelectedItem.Text);
-            GridView1.DataSource = trans;
-            GridView1.DataBind();
+                List<Transaction> trans = sc.gettransactions(DropDownList1.SelectedItem.Text);
+                GridView1.DataSource = trans;
+                GridView1.DataBind();
 
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
 
 
@@ -37,18 +44,25 @@ public partial class SCretrieveStockCard : System.Web.UI.Page
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-      
-        Item item= sc.getitemdetails(DropDownList1.SelectedItem.Text);
-        Label2.Text = item.itemdescription;
-        Label3.Text = item.bin;
-        Label4.Text = item.unitofmeasure;
-        Label5.Text = item.supplier1;
-        Label6.Text = item.supplier2;
-        Label7.Text = item.supplier3;
-        List<Transaction> trans = sc.gettransactions(DropDownList1.SelectedItem.Text);
-        GridView1.DataSource = trans;
-        GridView1.DataBind();
 
+        try
+        {
+            Item item = sc.getitemdetails(DropDownList1.SelectedItem.Text);
+            Label2.Text = item.itemdescription;
+            Label3.Text = item.bin;
+            Label4.Text = item.unitofmeasure;
+            Label5.Text = item.supplier1;
+            Label6.Text = item.supplier2;
+            Label7.Text = item.supplier3;
+            List<Transaction> trans = sc.gettransactions(DropDownList1.SelectedItem.Text);
+            GridView1.DataSource = trans;
+            GridView1.DataBind();
+
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
 
     }
 }

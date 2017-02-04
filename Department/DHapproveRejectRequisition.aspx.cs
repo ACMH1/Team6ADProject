@@ -15,39 +15,38 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(id.Name);
-        if (!IsPostBack)
+        try
         {
-            List<Requisition> r = d.DHgetRequisitionItems(headcode);
-            List<dynamic> item = new List<dynamic>();
-            List<dynamic> items = new List<dynamic>();
-            if (r.Count > 0)
+            IIdentity id = User.Identity;
+            headcode = Convert.ToInt32(id.Name);
+            if (!IsPostBack)
             {
-                foreach (Requisition i in r)
+                List<Requisition> r = d.DHgetRequisitionItems(headcode);
+                List<dynamic> item = new List<dynamic>();
+                List<dynamic> items = new List<dynamic>();
+                if (r.Count > 0)
                 {
-                    item = d.getItems(i.requisitionid).ToList();
-                    items.AddRange(item);
-                }
+                    foreach (Requisition i in r)
+                    {
+                        item = d.getItems(i.requisitionid).ToList();
+                        items.AddRange(item);
+                    }
 
-                //if (items != null)
-                //{
-                GridView1.DataSource = items;
-                GridView1.DataBind();
-                GenerateUniqueData(0);
+
+                    GridView1.DataSource = items;
+                    GridView1.DataBind();
+                    GenerateUniqueData(0);
+                }
+                else
+                {
+                    GridView1.Visible = false;
+                    Label1.Text = "No requests exist currently";
+                }
             }
-            else
-            {
-                GridView1.Visible = false;
-                Label1.Text = "No requests exist currently";
-            }
-            //}
-            //else
-            //{
-            //    GridView1.DataSource = null;
-            //    GridView1.DataBind();
-            //    Label1.Text = "No requests exist currently";
-            //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
 
     }
@@ -74,7 +73,7 @@ public partial class DHapproveReject : System.Web.UI.Page
                 d.approve(id, headcode);
             }
         }
-        catch(Exception e1)
+        catch(Exception)
         {
             GridView1.DataSource = null;
             GridView1.DataBind();
@@ -84,16 +83,23 @@ public partial class DHapproveReject : System.Web.UI.Page
    
     private void GenerateUniqueData(int cellno)
     {
-        //Logic for unique names
-        //Step 1:
-         string initialnamevalue = GridView1.Rows[0].Cells[cellno].Text;
-        //Step 2:
-        for (int i = 1; i < GridView1.Rows.Count; i++)
+        try
         {
-            if (GridView1.Rows[i].Cells[cellno].Text == initialnamevalue)
-                GridView1.Rows[i].Cells[cellno].Text = string.Empty;
-            else
-                initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
+            //Logic for unique names
+            //Step 1:
+            string initialnamevalue = GridView1.Rows[0].Cells[cellno].Text;
+            //Step 2:
+            for (int i = 1; i < GridView1.Rows.Count; i++)
+            {
+                if (GridView1.Rows[i].Cells[cellno].Text == initialnamevalue)
+                    GridView1.Rows[i].Cells[cellno].Text = string.Empty;
+                else
+                    initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
         }
     }
     protected void Reject_Click(object sender, EventArgs e)
@@ -118,7 +124,7 @@ public partial class DHapproveReject : System.Web.UI.Page
                 d.reject(id);
             }
         }
-        catch (Exception e1)
+        catch (Exception)
         {
             GridView1.DataSource = null;
             GridView1.DataBind();

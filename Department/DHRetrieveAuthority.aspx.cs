@@ -13,14 +13,28 @@ public partial class RetriveAuthority : System.Web.UI.Page
     DHserviceManager d = new DHserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(id.Name);
+        try
+        {
+            IIdentity id = User.Identity;
+            headcode = Convert.ToInt32(id.Name);
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        d.retrieveAuthority(headcode);
-        FormsAuthentication.SignOut();
-        FormsAuthentication.RedirectToLoginPage();
+        try
+        {
+            d.retrieveAuthority(headcode);
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
+        }
+        catch (Exception)
+        {
+            Response.Redirect("Error.aspx");
+        }
     }
 }

@@ -50,11 +50,11 @@ public static class DepartmentDAO
                 ctx.SaveChanges();
             }
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             System.Diagnostics.Debug.Write("ensure all fields are filled");
         }
-        catch (FormatException f)
+        catch (FormatException)
         {
             System.Diagnostics.Debug.Write("input is wrong format");
         }
@@ -89,7 +89,7 @@ public static class DepartmentDAO
                 ridItemListDesc.AddRange(ridItemDesc);
             }
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             System.Diagnostics.Debug.Write("no pending requisition items found");
         }
@@ -111,11 +111,11 @@ public static class DepartmentDAO
             rutable.quantity = quantity;
             ctx.SaveChanges();
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             System.Diagnostics.Debug.Write("unable to update");
         }
-        catch (FormatException f)
+        catch (FormatException)
         {
             System.Diagnostics.Debug.Write("input is wrong format");
         }
@@ -149,7 +149,7 @@ public static class DepartmentDAO
                 }
             }
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             System.Diagnostics.Debug.Write("unable to delete");
         }
@@ -185,7 +185,7 @@ public static class DepartmentDAO
             d1.collectionpoint = Cpoint;
             ctx.SaveChanges();
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             errormessage("no collection point found");
         }
@@ -212,7 +212,7 @@ public static class DepartmentDAO
             d1.collectionpoint = Cpoint;
             ctx.SaveChanges();
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             errormessage("no collection point found");
         }
@@ -255,7 +255,7 @@ public static class DepartmentDAO
             Roles.AddUserToRole(e1.employeecode.ToString(), "departmentrepresentative");
             Roles.RemoveUserFromRole(e1.employeecode.ToString(), "departmentemployee");
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             errormessage("no employee found");
         }
@@ -274,7 +274,7 @@ public static class DepartmentDAO
             Roles.AddUserToRole(e1.employeecode.ToString(), "departmentemployee");
             Roles.RemoveUserFromRole(e1.employeecode.ToString(), "departmentrepresentative");
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException)
         {
             errormessage("no employee found");
         }

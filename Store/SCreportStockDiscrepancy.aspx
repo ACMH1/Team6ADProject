@@ -20,21 +20,24 @@
         </tr>
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">Item Category</label></td>
-            <td>&nbsp;<asp:TextBox ID="TextBox1" runat="server" Height="23px" ReadOnly="True" Width="218px"></asp:TextBox></td>
+            <td>&nbsp;<asp:TextBox ID="TextBox1" runat="server" Height="23px" ReadOnly="True" Width="218px" Enabled="False"></asp:TextBox></td>
         </tr>
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">Item Description</label></td>
-            <td>&nbsp;<asp:TextBox ID="TextBox2" runat="server" ReadOnly="True" Width="287px"></asp:TextBox>
+            <td>&nbsp;<asp:TextBox ID="TextBox2" runat="server" ReadOnly="True" Width="287px" Enabled="False"></asp:TextBox>
                 <asp:Label ID="Date" CssClass="labels" runat="server" Style="z-index: 1; position: absolute; top: -205px; left: 9px; width: 130px; height: 26px" Text="Date issued "></asp:Label>
             </td>
         </tr>
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">quantity</label></td>
-            <td>&nbsp;<asp:TextBox ID="TextBox3" runat="server" ReadOnly="True" Width="215px"></asp:TextBox></td>
+            <td>&nbsp;<asp:TextBox ID="TextBox3" runat="server" ReadOnly="True" Width="215px" Enabled="False"></asp:TextBox></td>
         </tr>
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">Adjust</label></td>
-            <td>&nbsp;<asp:TextBox ID="TextBox4" runat="server" Width="214px"></asp:TextBox></td>
+            <td>&nbsp;<asp:TextBox ID="TextBox4" runat="server" Width="214px"></asp:TextBox>
+                <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Must be an integer." ForeColor="Red" Type="Integer"></asp:RangeValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Please enter a quantity." ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">Reason</label></td>
