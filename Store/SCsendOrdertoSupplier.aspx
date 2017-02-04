@@ -15,7 +15,7 @@
     <asp:Label ID="Label2" CssClass="labels" runat="server" Style="z-index: 1; position: absolute; top: 103px; left: 160px" Text="Item Code"></asp:Label>
     <asp:DropDownList ID="DropDownList2" runat="server" Style="z-index: 1; position: absolute; top: 108px; left: 279px" AutoPostBack="True" DataSourceID="SqlDataSource3" DataTextField="itemdescription" DataValueField="itemcode" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
     </asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT [itemcode], [itemdescription] FROM [Item]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT [itemcode], [itemdescription] FROM [Item]"></asp:SqlDataSource>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Enter Quantity in the Text Box" Style="z-index: 1; position: absolute; top: 272px; left: 345px" ValidationGroup="vg">*</asp:RequiredFieldValidator>
     <asp:CompareValidator ID="CompareValidator1" runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="TextBox1" ErrorMessage="Please Enter Only Numbers" Style="z-index: 1; position: absolute; top: 272px; left: 369px" ForeColor="Red" ValidationGroup="vg">*</asp:CompareValidator>
     

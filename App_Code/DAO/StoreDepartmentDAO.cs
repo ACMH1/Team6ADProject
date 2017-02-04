@@ -112,10 +112,10 @@ public static class StoreDepartmentDAO
         List<Requisition> rlist = ds.Requisitions.Where(x => x.status == 0 || x.status == 2).ToList<Requisition>();
         return rlist;
     }
-    public static List<String> getuniqueitems()
+    public static List<string> getuniqueitems()
     {
-        List<String> unique = new List<String>();
-        List<String> listDistinct = new List<String>();
+        List<string> unique = new List<string>();
+        List<string> listDistinct = new List<string>();
         unique = ds.RequisitionItems.Where(y => y.status == 0).Select(x => x.itemcode).ToList();
         listDistinct = unique.GroupBy(
          i => i,
@@ -123,10 +123,10 @@ public static class StoreDepartmentDAO
      ).ToList();
         return listDistinct;
     }
-    public static List<String> getuniqueitems2()
+    public static List<string> getuniqueitems2()
     {
-        List<String> unique = new List<String>();
-        List<String> listDistinct = new List<String>();
+        List<string> unique = new List<string>();
+        List<string> listDistinct = new List<string>();
         unique = ds.RequisitionItems.Where(y => y.status == 2).Select(x => x.itemcode).ToList();
         listDistinct = unique.GroupBy(
          i => i,
@@ -134,7 +134,7 @@ public static class StoreDepartmentDAO
      ).ToList();
         return listDistinct;
     }
-    public static IEnumerable<dynamic> getrequestdept(String item)
+    public static IEnumerable<dynamic> getrequestdept(string item)
     {
 
         //List<int> dept = new List<int>();
@@ -164,7 +164,7 @@ public static class StoreDepartmentDAO
 
     }
 
-    public static IEnumerable<dynamic> getrequestdeptstatus2(String item)
+    public static IEnumerable<dynamic> getrequestdeptstatus2(string item)
     {
 
         //List<int> dept = new List<int>();

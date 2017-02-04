@@ -9,7 +9,7 @@ using System.Web.UI;
 /// </summary>
 public static class MessageBox1
 {
-    public static void Show(Page Page, String Message)
+    public static void Show(Page Page, string Message)
     {
         Page.ClientScript.RegisterStartupScript(
            Page.GetType(),

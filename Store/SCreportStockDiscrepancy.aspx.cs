@@ -20,7 +20,7 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        role = Convert.ToInt32(User.Identity.Name);
+        role = Convert.ToInt32(id.Name);
         if (!IsPostBack) { 
            
             List<string> slist = scService.getSuppliercode();

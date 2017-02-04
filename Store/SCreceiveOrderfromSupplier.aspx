@@ -12,7 +12,7 @@
         </tr>
         <tr>
             <td>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT [suppliercode] FROM [Supplier]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT [suppliercode] FROM [Supplier]"></asp:SqlDataSource>
                 <asp:Label CssClass="labels" ID="Label2" runat="server" Style="z-index: 1; position: relative;" Text="DeliveryNO"></asp:Label>
             </td>
             <td>

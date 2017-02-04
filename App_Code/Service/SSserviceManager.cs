@@ -138,7 +138,7 @@ public class SSserviceManager
 
                     if (i.Item.quantityonhand < i.Item.reorderlevel && !StoreSupplierDAO.hasUndeliveredOrders(i.itemcode))
                     {
-                        raiseReorder(i.Item, userNo);
+                        raiseReorder(i.Item, 1031);
                     }
                 }
                 StoreSupplierDAO.approveAdjVoucher(vouchernumber, userNo);

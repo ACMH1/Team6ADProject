@@ -13,23 +13,23 @@ public partial class DErequestItem : System.Web.UI.Page
 {
     DEserviceManager eM = new DEserviceManager();
     string category;
-    string idString = " ";
+    string idstring = " ";
     int ecode;
     int itemsadded;
-    List<String> idesc;
-    List<String> icode;
-    List<String> iqty;
-    List<String> iunit;
+    List<string> idesc;
+    List<string> icode;
+    List<string> iqty;
+    List<string> iunit;
     protected void Page_Load(object sender, EventArgs e)
     {
 
         IIdentity id = User.Identity;
-        ecode = Convert.ToInt32(User.Identity.Name);
+        ecode = Convert.ToInt32(id.Name);
 
         if (!IsPostBack)
         {
 
-            idString = Request.QueryString["id"];
+            idstring = Request.QueryString["id"];
             loadDropDownList7();
 
 
@@ -50,17 +50,17 @@ public partial class DErequestItem : System.Web.UI.Page
 
         if (Session["idesc"] != null && Session["icode"] != null && Session["iqty"] != null && Session["iunit"] != null)
         {
-            idesc = (List<String>)Session["idesc"];
-            icode = (List<String>)Session["icode"];
-            iqty = (List<String>)Session["iqty"];
-            iunit = (List<String>)Session["iunit"];
+            idesc = (List<string>)Session["idesc"];
+            icode = (List<string>)Session["icode"];
+            iqty = (List<string>)Session["iqty"];
+            iunit = (List<string>)Session["iunit"];
         }
         else
         {
-            idesc = new List<String>();
-            icode = new List<String>();
-            iqty = new List<String>();
-            iunit = new List<String>();
+            idesc = new List<string>();
+            icode = new List<string>();
+            iqty = new List<string>();
+            iunit = new List<string>();
         }
         bool alreadyAdded = icode.Contains(DropDownList7.SelectedItem.Value);
 
@@ -82,10 +82,10 @@ public partial class DErequestItem : System.Web.UI.Page
     protected void rmbtn_Click(object sender, EventArgs e)
     {
         Button rmbtn = (Button)sender;
-        idesc = (List<String>)Session["idesc"];
-        icode = (List<String>)Session["icode"];
-        iqty = (List<String>)Session["iqty"];
-        iunit = (List<String>)Session["iunit"];
+        idesc = (List<string>)Session["idesc"];
+        icode = (List<string>)Session["icode"];
+        iqty = (List<string>)Session["iqty"];
+        iunit = (List<string>)Session["iunit"];
         string[] ID = rmbtn.ID.Split('r');
         iqty.RemoveAt(Convert.ToInt32(ID[1]));
         icode.RemoveAt(Convert.ToInt32(ID[1]));
@@ -103,7 +103,7 @@ public partial class DErequestItem : System.Web.UI.Page
     protected void qtybox_Changed(object sender, EventArgs e)
     {
         TextBox qtybox = (TextBox)sender;
-        iqty = (List<String>)Session["iqty"];
+        iqty = (List<string>)Session["iqty"];
         string[] ID = qtybox.ID.Split('q');
         iqty[Convert.ToInt32(ID[1])] = qtybox.Text;
         Session["iqty"] = iqty;
@@ -119,8 +119,8 @@ public partial class DErequestItem : System.Web.UI.Page
         {
             if (Page.IsValid)
             {
-                icode = (List<String>)Session["icode"];
-                iqty = (List<String>)Session["iqty"];
+                icode = (List<string>)Session["icode"];
+                iqty = (List<string>)Session["iqty"];
                 eM.submitRequisitionItemList(iqty, icode, ecode);
                 Session["idesc"] = null;
                 Session["icode"] = null;
@@ -163,17 +163,17 @@ public partial class DErequestItem : System.Web.UI.Page
     {
         if (Session["idesc"] != null && Session["icode"] != null && Session["iqty"] != null && Session["iunit"] != null)
         {
-            idesc = (List<String>)Session["idesc"];
-            icode = (List<String>)Session["icode"];
-            iqty = (List<String>)Session["iqty"];
-            iunit = (List<String>)Session["iunit"];
+            idesc = (List<string>)Session["idesc"];
+            icode = (List<string>)Session["icode"];
+            iqty = (List<string>)Session["iqty"];
+            iunit = (List<string>)Session["iunit"];
         }
         else
         {
-            idesc = new List<String>();
-            icode = new List<String>();
-            iqty = new List<String>();
-            iunit = new List<String>();
+            idesc = new List<string>();
+            icode = new List<string>();
+            iqty = new List<string>();
+            iunit = new List<string>();
         }
 
 
@@ -240,7 +240,7 @@ public partial class DErequestItem : System.Web.UI.Page
 
 //public static class MessageBox1
 //{
-//    public static void Show(this Page Page, String Message)
+//    public static void Show(this Page Page, string Message)
 //    {
 //        Page.ClientScript.RegisterStartupScript(
 //           Page.GetType(),

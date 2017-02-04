@@ -20,7 +20,7 @@ public static class DepartmentDAO
 
         return Ilist;
     }
-    public static void submitRequisitionItemList(List<String> qty, List<String> itemcode, int empcode)
+    public static void submitRequisitionItemList(List<string> qty, List<string> itemcode, int empcode)
     {
         try
         {

@@ -6,7 +6,7 @@
         Deliver Order</h1></center>
     <asp:DropDownList ID="DropDownList3" runat="server" Style="z-index: 1; position: absolute; top: 94px; left: 309px" DataSourceID="SqlDataSource2" DataTextField="collectionpoint" DataValueField="collectionpoint" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged" AutoPostBack="True">
     </asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT [collectionpoint] FROM [Department] WHERE ([collectionpoint] IS NOT NULL)"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT [collectionpoint] FROM [Department] WHERE ([collectionpoint] IS NOT NULL)"></asp:SqlDataSource>
     <asp:Label ID="Label3" runat="server" Style="z-index: 1; position: absolute; top: 195px; left: 333px; width: 280px;" Text="Label" Font-Bold="True" Font-Italic="True" Font-Size="XX-Large" ForeColor="#333399"></asp:Label>
     <asp:RadioButtonList CssClass="labels" ID="RadioButtonList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Style="z-index: 1; width: 265px; height: 21px; position: absolute; top: 154px; left: 304px; margin-top: 0px">
     </asp:RadioButtonList>

@@ -13,7 +13,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        role = Convert.ToInt32(User.Identity.Name);
+        role = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             DropDownList2.DataBind();
@@ -65,7 +65,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
     {
         for (int i = 0; i < GridView1.Rows.Count; i++)
         {
-            String remarks = "";
+            string remarks = "";
             GridViewRow row = GridView1.Rows[i];
             int purchaseid = Convert.ToInt32(GridView1.Rows[i].Cells[0].Text);
             TextBox remarkstextbox = (TextBox)row.FindControl("TextRemarks");
@@ -77,9 +77,9 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
             {
                 remarks = null;
             }
-            String itemcode = GridView1.Rows[i].Cells[1].Text;
+            string itemcode = GridView1.Rows[i].Cells[1].Text;
             sc.updateorderitems(purchaseid, itemcode, remarks);
-            String deliverno = TextBox1.Text;
+            string deliverno = TextBox1.Text;
             sc.updatesorder(purchaseid, role, deliverno);
         }
         Response.Write("<script>alert('Receive Sucessfull');</script>");

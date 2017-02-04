@@ -6,7 +6,7 @@
         <asp:DropDownList ID="DropDownList1" runat="server" Style="z-index: 1; position: absolute; top: 2px; left: 170px; width: 148px; height: 25px" DataSourceID="SqlDataSource1" DataTextField="category" DataValueField="category" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem>--select--</asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT DISTINCT [category] FROM [Item]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT DISTINCT [category] FROM [Item]"></asp:SqlDataSource>
     </p>
     <p>
         &nbsp;

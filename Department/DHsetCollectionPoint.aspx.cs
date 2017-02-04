@@ -15,7 +15,7 @@ public partial class DHsetCollectionPoint : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        code = Convert.ToInt32(User.Identity.Name);
+        code = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             d1=d.DHfindCurrentCollectionPoint(code);

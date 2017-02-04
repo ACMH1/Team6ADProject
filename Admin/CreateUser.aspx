@@ -16,6 +16,7 @@
                             <td>
                                 <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="UserName" ErrorMessage="Username must be a number" ForeColor="Red" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
                             </td>
                         </tr>
                         <tr>
@@ -47,17 +48,17 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                <asp:Label ID="DeptLabel" runat="server" AssociatedControlID="Answer">Department Code:</asp:Label>
+                                <asp:Label ID="DeptLabel" runat="server" AssociatedControlID="DeptList">Department Code:</asp:Label>
                             </td>
                             <td>
                                 <asp:DropDownList ID="DeptList" runat="server" DataSourceID="SqlDataSource1" DataTextField="deptcode" DataValueField="deptcode">
                                 </asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT [deptcode] FROM [Department]"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT [deptcode] FROM [Department]"></asp:SqlDataSource>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
-                                <asp:Label ID="RoleLabel" runat="server" AssociatedControlID="Answer">Role:</asp:Label>
+                                <asp:Label ID="RoleLabel" runat="server" AssociatedControlID="RoleList">Role:</asp:Label>
                             </td>
                             <td>
                                 <asp:DropDownList ID="RoleList" runat="server">

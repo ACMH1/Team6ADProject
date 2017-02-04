@@ -39,7 +39,7 @@
     </table>
     <asp:DropDownList ID="DropDownList1" runat="server" style="z-index: 1; position: absolute; top: 94px; left: 340px; width: 249px; height: 26px; " OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" DataSourceID="SqlDataSource1" DataTextField="itemcode" DataValueField="itemcode" AutoPostBack="True">
     </asp:DropDownList>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionString %>" SelectCommand="SELECT [itemcode] FROM [Item]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT [itemcode] FROM [Item]"></asp:SqlDataSource>
     <asp:Label ID="Label1" runat="server" CssClass="labels" Font-Bold="True" style="z-index: 1; position: absolute; top: 89px; left: 133px; width: 140px" Text="Item Code "></asp:Label>
 <asp:GridView ID="GridView1" CssClass="grid" runat="server" style="z-index: 1; width: 921px; height: 127px; position: absolute; top: 460px; left: 130px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
     <AlternatingRowStyle BackColor="#CCCCCC" />

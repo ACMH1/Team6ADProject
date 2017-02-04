@@ -290,7 +290,7 @@ public class SCserviceManager
     //Vishal's additions
     //Vishal's additions
 
-    public IEnumerable<dynamic> gettransaction(String itemcode)
+    public IEnumerable<dynamic> gettransaction(string itemcode)
     {
         var transactions = sce.Transactions.Where(x => x.itemcode == itemcode).Select(y => new { Date = y.date, Department = y.deptsupplier, quantity = y.quantitychange, balance = y.balance }).ToList();
         return transactions;
@@ -300,13 +300,13 @@ public class SCserviceManager
         StoreSupplierDAO.addItemOrder(item, userNo, item.supplier1);
     }
 
-    public Item getitemdetails(String id)
+    public Item getitemdetails(string id)
     {
 
         Item item = sce.Items.Where(x => x.itemcode == id).First();
         return item;
     }
-    public List<Transaction> gettransactions(String id)
+    public List<Transaction> gettransactions(string id)
     {
         List<Transaction> trans = new List<Transaction>();
         trans = sce.Transactions.Where(x => x.itemcode == id).ToList();
@@ -332,10 +332,10 @@ public class SCserviceManager
     //}
 
 
-    public List<String> getuniqueitems()
+    public List<string> getuniqueitems()
     {
-        List<String> unique = new List<String>();
-        List<String> listDistinct = new List<String>();
+        List<string> unique = new List<string>();
+        List<string> listDistinct = new List<string>();
         unique = sce.RequisitionItems.Where(y => y.status == 0).Select(x => x.itemcode).ToList();
         listDistinct = unique.GroupBy(
          i => i,
@@ -343,10 +343,10 @@ public class SCserviceManager
      ).ToList();
         return listDistinct;
     }
-    public List<String> getuniqueitems2()
+    public List<string> getuniqueitems2()
     {
-        List<String> unique = new List<String>();
-        List<String> listDistinct = new List<String>();
+        List<string> unique = new List<string>();
+        List<string> listDistinct = new List<string>();
         unique = sce.RequisitionItems.Where(y => y.status == 2).Select(x => x.itemcode).ToList();
         listDistinct = unique.GroupBy(
          i => i,
@@ -376,7 +376,7 @@ public class SCserviceManager
 
         return supplier;
     }
-    public TenderQuotation getprice(String suppliercode, String item)
+    public TenderQuotation getprice(string suppliercode, string item)
     {
 
 
@@ -384,7 +384,7 @@ public class SCserviceManager
         return price;
 
     }
-    //public OrderItem getorderquantity(String code)
+    //public OrderItem getorderquantity(string code)
     //{
     //    OrderItem qty = sce.OrderItems.Where(c => c.itemcode == code).First();
     //        return qty;
@@ -395,7 +395,7 @@ public class SCserviceManager
 
         return dept;
     }
-    public List<int> getdis(String deptcode)
+    public List<int> getdis(string deptcode)
 
 
     {
@@ -417,7 +417,7 @@ public class SCserviceManager
         return disitems;
     }
 
-    public List<int> getpurchaseid(String suppliercode)
+    public List<int> getpurchaseid(string suppliercode)
     {
         List<int> purchaseid = sce.SOrders.Where(y => y.suppliercode == suppliercode && y.deliveryordernumber == null && y.approvercode != null).Select(x => x.purchaseordernumber).ToList();
         return purchaseid;
@@ -452,7 +452,7 @@ public class SCserviceManager
         return result;
     }
 
-    public void updateStatus(int reqid, String itemcode, int actual)
+    public void updateStatus(int reqid, string itemcode, int actual)
     {
 
         RequisitionItem r = sce.RequisitionItems.Where(x => x.requisitionid == reqid && x.itemcode == itemcode).First();
@@ -467,7 +467,7 @@ public class SCserviceManager
         Requisition employeeid = sce.Requisitions.Where(x => x.requisitionid == reqid).First();
         return employeeid;
     }
-    public void owestatus(int reqid, String itemcode, int owe, int allocated, String dept, int employeecode, RequisitionItem status)
+    public void owestatus(int reqid, string itemcode, int owe, int allocated, string dept, int employeecode, RequisitionItem status)
     {
         RequisitionItem r = sce.RequisitionItems.Where(x => x.requisitionid == reqid && x.itemcode == itemcode).First();
         r.quantity = allocated;
@@ -531,7 +531,7 @@ public class SCserviceManager
 
     }
 
-    public void deliverstatus(int reqid, String itemcode, int owe, int allocated, String dept, int employeecode)
+    public void deliverstatus(int reqid, string itemcode, int owe, int allocated, string dept, int employeecode)
     {
         RequisitionItem r = sce.RequisitionItems.Where(x => x.requisitionid == reqid && x.itemcode == itemcode).First();
         r.quantity = allocated;
@@ -587,7 +587,7 @@ public class SCserviceManager
 
 
 
-    public Requisition generatenewrequisition(String dept, int employeecode)
+    public Requisition generatenewrequisition(string dept, int employeecode)
     {
         Requisition result = new Requisition();
         result.employeecode = employeecode;
@@ -598,7 +598,7 @@ public class SCserviceManager
         return newreq;
 
     }
-    public Requisition findLastUnapprovedOrderSC(String dept, int employeecode)
+    public Requisition findLastUnapprovedOrderSC(string dept, int employeecode)
     {
         Requisition lastUnapproved = findUnapprovedOrders().Where(x => x.employeecode == employeecode && x.deptcode == dept).LastOrDefault();
         if (lastUnapproved == null)
@@ -674,7 +674,7 @@ public class SCserviceManager
         orders = sce.Disbursements.Where(x => x.collectiondate == null).Select(y => y).ToList<Disbursement>();
         return orders;
     }
-    public Item getreorderlevel(String itemcode)
+    public Item getreorderlevel(string itemcode)
     {
         Item reorderlevel = sce.Items.Where(x => x.itemcode == itemcode).First();
         return reorderlevel;
@@ -691,7 +691,7 @@ public class SCserviceManager
         return rlist;
 
     }
-    public void updatedisb(String deptcode)
+    public void updatedisb(string deptcode)
     {
         Disbursement disb = sce.Disbursements.Where(x => x.deptcode == deptcode && x.collectiondate == null).First();
         disb.collectiondate = DateTime.Now;
@@ -736,13 +736,13 @@ public class SCserviceManager
         sce.SaveChanges();
 
     }
-    public void updateorderitems(int purchaseid, String itemcode, string remarks)
+    public void updateorderitems(int purchaseid, string itemcode, string remarks)
     {
         OrderItem orderitem = sce.OrderItems.Where(x => x.purchaseordernumber == purchaseid && x.itemcode == itemcode).First();
         orderitem.remarks = remarks;
         sce.SaveChanges();
     }
-    public void updatesorder(int purchaseid, int userid, String deliveryno)
+    public void updatesorder(int purchaseid, int userid, string deliveryno)
     {
         SOrder order = sce.SOrders.Where(x => x.purchaseordernumber == purchaseid).First();
         order.deliverydate = DateTime.Now;
@@ -751,7 +751,7 @@ public class SCserviceManager
         sce.SaveChanges();
 
     }
-    public List<TenderQuotation> getsuppliercodes(String itemcode)
+    public List<TenderQuotation> getsuppliercodes(string itemcode)
     {
         List<TenderQuotation> supplier = new List<TenderQuotation>();
         supplier = sce.TenderQuotations.Where(x => x.itemcode == itemcode).ToList();

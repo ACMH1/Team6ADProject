@@ -17,16 +17,16 @@ public partial class SCprocessRequest : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        role = Convert.ToInt32(User.Identity.Name);
+        role = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             //    clerkcode = Request.QueryString[];
             //}
-            List<String> unique = sc.getuniqueitems();
-            List<String> unique2 = sc.getuniqueitems2();
+            List<string> unique = sc.getuniqueitems();
+            List<string> unique2 = sc.getuniqueitems2();
 
-            //List<String> unique = new List<string>();
-            //List<String> unique2 = new List<string>();
+            //List<string> unique = new List<string>();
+            //List<string> unique2 = new List<string>();
 
 
 
@@ -43,7 +43,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
             if (unique2.Count != 0)
             {
 
-                foreach (String i in unique2)
+                foreach (string i in unique2)
                 {
                     req2 = sc.getrequestdeptstatus2(i).ToList();
                     request2.AddRange(req2);
@@ -56,7 +56,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button1.Visible = true;
                 if (GridView1.Rows.Count == 0)
                 {
-                    foreach (String i in unique)
+                    foreach (string i in unique)
                     {
                         req = sc.getrequestdeptstatus(i).ToList();
                         request.AddRange(req);
@@ -72,7 +72,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
             }
             else if (unique.Count != 0)
             {
-                foreach (String i in unique)
+                foreach (string i in unique)
                 {
                     req = sc.getrequestdeptstatus(i).ToList();
                     request.AddRange(req);
@@ -316,7 +316,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         System.Threading.Thread.Sleep(1000);
-        List<String> error = new List<string>();
+        List<string> error = new List<string>();
         if (GridView1.Rows.Count != 0)
         {
 
@@ -325,7 +325,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
             int actual = Convert.ToInt32(GridView1.Rows[0].Cells[3].Text);
             List<int> dneed = new List<int>();
             dneed.Add(Convert.ToInt32(t.Text));
-            String itemdescription = GridView1.Rows[0].Cells[1].Text;
+            string itemdescription = GridView1.Rows[0].Cells[1].Text;
             for (int k = 1; k < GridView1.Rows.Count; k++)
             {
                 GridViewRow row = GridView1.Rows[k];
@@ -382,8 +382,8 @@ public partial class SCprocessRequest : System.Web.UI.Page
         {
 
 
-            List<String> deptList = new List<string>();
-            List<String> dlist = new List<string>();
+            List<string> deptList = new List<string>();
+            List<string> dlist = new List<string>();
             string itemcode, dept;
             int allocatedqty, actualqty1 = 0, repcode;
 
@@ -391,7 +391,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
             {
                 Disbursement disb = new Disbursement();
                 Disbursement disbid = new Disbursement();
-                String d = GridView1.Rows[i].Cells[5].Text;
+                string d = GridView1.Rows[i].Cells[5].Text;
 
 
                 dept = sc.getdepartmentcode(d);
@@ -440,7 +440,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 {
                     initialactualqty = Convert.ToInt32(GridView1.Rows[i].Cells[3].Text);
                 }
-                String dep = GridView1.Rows[i].Cells[5].Text;
+                string dep = GridView1.Rows[i].Cells[5].Text;
                 dept = sc.getdepartmentcode(dep);
                 int requisition = Convert.ToInt32(GridView1.Rows[i].Cells[4].Text);
                 Requisition employeecode = sc.getemployeecode(requisition);
@@ -453,7 +453,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                         Item reorderlevel = sc.getreorderlevel(GridView1.Rows[i].Cells[8].Text);
                         if (initialactualqty <= reorderlevel.reorderlevel)
                         {
-                            sc.raiseReorder(reorderlevel, role);
+                            sc.raiseReorder(reorderlevel, 1031);
 
                             //Add clerk code here
                         }
@@ -465,7 +465,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                         Item reorderlevel = sc.getreorderlevel(GridView1.Rows[i].Cells[8].Text);
                         if (initialactualqty <= reorderlevel.reorderlevel)
                         {
-                            sc.raiseReorder(reorderlevel, role);
+                            sc.raiseReorder(reorderlevel, 1031);
                         }
 
                     }
@@ -511,7 +511,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
         }
         else if (error.Count > 0)
         {
-            //String s = "";
+            //string s = "";
             //  BulletedList1.Items.Add("Allocation Exceeded the Actual Quantity");
             for (int i = 0; i < error.Count; i++)
             {
@@ -532,13 +532,13 @@ public partial class SCprocessRequest : System.Web.UI.Page
         Button2.Visible = false;
         Button3.Visible = true;
         Button1.Visible = true;
-        List<String> unique2 = sc.getuniqueitems2();
+        List<string> unique2 = sc.getuniqueitems2();
         List<dynamic> req2 = new List<dynamic>();
         List<dynamic> request2 = new List<dynamic>();
         if (unique2.Count != 0)
         {
 
-            foreach (String i in unique2)
+            foreach (string i in unique2)
             {
                 req2 = sc.getrequestdeptstatus2(i).ToList();
                 request2.AddRange(req2);
@@ -638,12 +638,12 @@ public partial class SCprocessRequest : System.Web.UI.Page
     {
         Button3.Visible = false;
         Button2.Visible = true;
-        List<String> unique = sc.getuniqueitems();
+        List<string> unique = sc.getuniqueitems();
         List<dynamic> req = new List<dynamic>();
         List<dynamic> request = new List<dynamic>();
         if (unique.Count != 0)
         {
-            foreach (String i in unique)
+            foreach (string i in unique)
             {
                 req = sc.getrequestdeptstatus(i).ToList();
                 request.AddRange(req);

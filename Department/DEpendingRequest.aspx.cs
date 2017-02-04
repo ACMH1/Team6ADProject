@@ -16,7 +16,7 @@ public partial class DEpendingRequest : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        ecode = Convert.ToInt32(User.Identity.Name);
+        ecode = Convert.ToInt32(id.Name);
         List<dynamic> rRIL = new List<dynamic>();
         if (!IsPostBack)
         {
@@ -182,7 +182,7 @@ public partial class DEpendingRequest : System.Web.UI.Page
 }
 public static class MessageBox
 {
-    public static void Show(this Page Page, String Message)
+    public static void Show(this Page Page, string Message)
     {
         Page.ClientScript.RegisterStartupScript(
            Page.GetType(),

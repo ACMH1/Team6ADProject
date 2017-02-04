@@ -16,7 +16,7 @@ public partial class DHapproveReject : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(User.Identity.Name);
+        headcode = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             List<Requisition> r = d.DHgetRequisitionItems(headcode);
@@ -65,7 +65,7 @@ public partial class DHapproveReject : System.Web.UI.Page
 
           for (int i = 0; i < GridView1.Rows.Count; i++)
             {
-                String val = GridView1.Rows[i].Cells[0].Text;
+                string val = GridView1.Rows[i].Cells[0].Text;
                 if (!String.IsNullOrEmpty(val))
                     ids.Add(Convert.ToInt32(val));
             }
@@ -109,7 +109,7 @@ public partial class DHapproveReject : System.Web.UI.Page
 
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
-                String val = GridView1.Rows[i].Cells[0].Text;
+                string val = GridView1.Rows[i].Cells[0].Text;
                 if (!String.IsNullOrEmpty(val))
                     ids.Add(Convert.ToInt32(val));
             }

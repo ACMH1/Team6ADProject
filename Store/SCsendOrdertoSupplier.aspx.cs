@@ -15,7 +15,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        role = Convert.ToInt32(User.Identity.Name);
+        role = Convert.ToInt32(id.Name);
         if (GridView1.Rows.Count==0)
         {
             //Button1.Visible = false;

@@ -28,7 +28,7 @@ public class DEserviceManager
         return DepartmentDAO.getUnit(itemcode);
     }
 
-    public void submitRequisitionItemList(List<String> qty, List<String> itemcode, int empcode)
+    public void submitRequisitionItemList(List<string> qty, List<string> itemcode, int empcode)
     {
         DepartmentDAO.submitRequisitionItemList(qty, itemcode, empcode);
     }

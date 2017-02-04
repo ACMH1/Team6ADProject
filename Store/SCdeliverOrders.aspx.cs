@@ -16,7 +16,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        role = Convert.ToInt32(User.Identity.Name);
+        role = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             DropDownList3.DataBind();
@@ -51,7 +51,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
                 GridView1.DataBind();
                 //for (int i = 0; i < GridView1.Rows.Count; i++)
                 //{
-                //    String itemcode = GridView1.Rows[i].Cells[0].Text;
+                //    string itemcode = GridView1.Rows[i].Cells[0].Text;
                 //    List<TenderQuotation> supplier = new List<TenderQuotation>();
                 //    //supplier.Add("Select");
                 //    supplier = sc.getsuppliercodes(itemcode);
@@ -104,7 +104,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            String itemcode = e.Row.Cells[0].Text;
+            string itemcode = e.Row.Cells[0].Text;
             List<TenderQuotation> supplier = new List<TenderQuotation>();
             //supplier.Add("Select");
             supplier = sc.getsuppliercodes(itemcode);
@@ -205,7 +205,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
 
-        String actualqty;
+        string actualqty;
         List<RequisitionItem> rlist = new List<RequisitionItem>();
         List<Requisition> reqlist = new List<Requisition>();
         string deptcode;
@@ -221,10 +221,10 @@ public partial class SCDeliverOrders : System.Web.UI.Page
 
         for (int i = 0; i < GridView1.Rows.Count; i++)
         {
-            String suppliercode = "";
+            string suppliercode = "";
             TenderQuotation price = new TenderQuotation();
             GridViewRow row = GridView1.Rows[i];
-            String itemcode = GridView1.Rows[i].Cells[0].Text;
+            string itemcode = GridView1.Rows[i].Cells[0].Text;
             TextBox tx = (TextBox)row.FindControl("Textfrom");
             allocated = Convert.ToInt32(GridView1.Rows[i].Cells[2].Text);
             actualqty = tx.Text;

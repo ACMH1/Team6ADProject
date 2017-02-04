@@ -16,7 +16,7 @@ public partial class DHassignRepresentative : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(User.Identity.Name);
+        headcode = Convert.ToInt32(id.Name);
         e1 = d.getDepartmentRepresentative(headcode);
         if (!IsPostBack)
         {

@@ -18,7 +18,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         IIdentity id = User.Identity;
-        headcode = Convert.ToInt32(User.Identity.Name);
+        headcode = Convert.ToInt32(id.Name);
         if (!IsPostBack)
         {
             Calendar1.Visible = false;
@@ -118,7 +118,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
 }
 //public static class MessageBox1
 //{
-//    public static void Show(this Page Page, String Message)
+//    public static void Show(this Page Page, string Message)
 //    {
 //        Page.ClientScript.RegisterStartupScript(
 //           Page.GetType(),

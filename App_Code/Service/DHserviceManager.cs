@@ -86,7 +86,7 @@ public class DHserviceManager
 
             //for (int i = 0; i < GridView1.Rows.Count; i++)
             //{
-            //  String val = GridView1.Rows[i].Cells[0].Text;
+            //  string val = GridView1.Rows[i].Cells[0].Text;
             //  if (!String.IsNullOrEmpty(val))
             // ids.Add(Convert.ToInt32(val));
             // }
