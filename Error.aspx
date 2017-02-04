@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     
-        Help!</div>
+        <h1>An unexpected error occurred. Please contact your systems administrator for further details.</h1></div>
     </form>
 </body>
 </html>

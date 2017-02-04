@@ -16,21 +16,29 @@ public partial class CreateUser : System.Web.UI.Page
 
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
-        Employee emp = new Employee();
-        emp.employeename = CreateUserWizard1.UserName;
-        emp.employeeemail = CreateUserWizard1.Email;
-        DropDownList deptList = (DropDownList)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("DeptList");
-        emp.deptcode = deptList.SelectedItem.Text;
-        DropDownList roleList = (DropDownList)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("RoleList");
-        emp.role = roleList.SelectedValue;
-        emp.del = 0;
-        EmployeeDAO.CreateNewEmployee(emp);
-
-        string createRole = emp.role;
-        if (!Roles.RoleExists(createRole))
+        try
         {
-            Roles.CreateRole(createRole);
+            Employee emp = new Employee();
+            emp.employeename = CreateUserWizard1.UserName;
+            emp.employeeemail = CreateUserWizard1.Email;
+            DropDownList deptList = (DropDownList)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("DeptList");
+            emp.deptcode = deptList.SelectedItem.Text;
+            DropDownList roleList = (DropDownList)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("RoleList");
+            emp.role = roleList.SelectedValue;
+            emp.del = 0;
+            EmployeeDAO.CreateNewEmployee(emp);
+
+            string createRole = emp.role;
+            if (!Roles.RoleExists(createRole))
+            {
+                Roles.CreateRole(createRole);
+            }
+            Roles.AddUserToRole(emp.employeename, createRole);
         }
-        Roles.AddUserToRole(emp.employeename, createRole);
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 }

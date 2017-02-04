@@ -660,6 +660,8 @@ public class SCserviceManager
         {
             sce.Disbursements.Add(disb);
             sce.SaveChanges();
+            disb.collectiondate = DateTime.Now;
+            TransactionDAO.addTransactionFromDisbursement(disb);
             Disbursement disbid = sce.Disbursements.OrderByDescending(x => x.disbursementid).First();
             return disbid;
         }
@@ -747,8 +749,7 @@ public class SCserviceManager
         order.deliverydate = DateTime.Now;
         order.receivercode = userid;
         order.deliveryordernumber = deliveryno;
-        sce.SaveChanges();
-
+        TransactionDAO.addTransactionFromOrder(order);
     }
     public List<TenderQuotation> getsuppliercodes(string itemcode)
     {

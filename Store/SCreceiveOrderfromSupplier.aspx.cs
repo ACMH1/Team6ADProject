@@ -98,7 +98,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
                 string deliverno = TextBox1.Text;
                 sc.updatesorder(purchaseid, role, deliverno);
             }
-            Response.Write("<script>alert('Receive Sucessfull');</script>");
+            Response.Write("<script>alert('Receive Sucessful');</script>");
             List<int> purchase = sc.getpurchaseid(DropDownList2.SelectedItem.Text);
             List<dynamic> items = new List<dynamic>();
             foreach (int i in purchase)

@@ -16,50 +16,58 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Login1_LoggedIn(object sender, EventArgs e)
     {
-        AdminserviceManager am = new AdminserviceManager();
-        DHserviceManager dm = new DHserviceManager();
-        
-        Department dept = am.FindEmployeebyID(Convert.ToInt32(Login1.UserName)).Department;
-        if (dept.delegatecode.HasValue && dept.startdate.HasValue && dept.enddate.HasValue)
+        try
         {
-            if (((DateTime)dept.startdate).CompareTo(DateTime.Now) <= 0)
+            AdminserviceManager am = new AdminserviceManager();
+            DHserviceManager dm = new DHserviceManager();
+
+            Department dept = am.FindEmployeebyID(Convert.ToInt32(Login1.UserName)).Department;
+            if (dept.delegatecode.HasValue && dept.startdate.HasValue && dept.enddate.HasValue)
             {
-                if (((DateTime)dept.enddate).CompareTo(DateTime.Now) >= 0)
+                if (((DateTime)dept.startdate).CompareTo(DateTime.Now) <= 0)
                 {
-                    dm.executeDelegation();
+                    if (((DateTime)dept.enddate).CompareTo(DateTime.Now) >= 0)
+                    {
+                        dm.executeDelegation();
+                    }
+                    else
+                    {
+                        dm.retrieveAuthority(dept.Employees.Where(x => x.role == "departmenthead" || x.role == "delegatedhead").First().employeecode);
+                    }
                 }
-                else
-                {
-                    dm.retrieveAuthority(dept.Employees.Where(x => x.role == "departmenthead" || x.role == "delegatedhead").First().employeecode);
-                }
+            }
+
+            string userRole = Roles.GetRolesForUser(Login1.UserName)[0];
+            switch (userRole)
+            {
+                case "departmentemployee":
+                case "departmentrepresentative":
+                    Response.Redirect("~/Department/DErequestItem.aspx");
+                    break;
+                case "departmenthead":
+                case "delegatedemployee":
+                    Response.Redirect("~/Department/DHapproveRejectRequisition.aspx");
+                    break;
+                case "delegatedhead":
+                    Response.Redirect("~/Department/DHRetrieveAuthority.aspx");
+                    break;
+                case "storeclerk":
+                    Response.Redirect("~/Store/SCretrieveStockCard.aspx");
+                    break;
+                case "storesupervisor":
+                case "storemanager":
+                    Response.Redirect("~/Store/SSapproveRejectOrder.aspx");
+                    break;
+                default:
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    break;
             }
         }
 
-        string userRole = Roles.GetRolesForUser(Login1.UserName)[0];
-        switch (userRole)
+        catch (Exception)
         {
-            case "departmentemployee":
-            case "departmentrepresentative":
-                Response.Redirect("~/Department/DErequestItem.aspx");
-                break;
-            case "departmenthead":
-            case "delegatedemployee":
-                Response.Redirect("~/Department/DHapproveReject.aspx");
-                break;
-            case "delegatedhead":
-                Response.Redirect("~/Department/DHRetriveAuthority.aspx");
-                break;
-            case "storeclerk":
-                Response.Redirect("~/Store/SCretrieveStockCard.aspx");
-                break;
-            case "storesupervisor":
-            case "storemanager":
-                Response.Redirect("~/Store/SSapproveRejectOrder.aspx");
-                break;
-            default:
-                FormsAuthentication.SignOut();
-                FormsAuthentication.RedirectToLoginPage();
-                break;
+            Response.Redirect("Error.aspx");
         }
     }
 }
