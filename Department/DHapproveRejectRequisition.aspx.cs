@@ -134,6 +134,4 @@ public partial class DHapproveReject : System.Web.UI.Page
             Label1.Text = "Rejected";
         }
     }
-
-
 }
