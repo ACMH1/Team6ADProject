@@ -15,8 +15,8 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             headcode = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -43,11 +43,11 @@ public partial class DHapproveReject : System.Web.UI.Page
                     Label1.Text = "No requests exist currently";
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,8 +84,8 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     private void GenerateUniqueData(int cellno)
     {
-        //try
-        //{
+        try
+        {
             //Logic for unique names
             //Step 1:
             string initialnamevalue = GridView1.Rows[0].Cells[cellno].Text;
@@ -97,11 +97,11 @@ public partial class DHapproveReject : System.Web.UI.Page
                 else
                     initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void Reject_Click(object sender, EventArgs e)
     {
