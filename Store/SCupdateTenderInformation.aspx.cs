@@ -23,7 +23,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     private void bindGridView()
@@ -51,7 +51,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -63,7 +63,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -88,7 +88,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -110,7 +110,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -124,7 +124,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -170,7 +170,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
   
     }
@@ -200,7 +200,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

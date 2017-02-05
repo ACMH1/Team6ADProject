@@ -34,7 +34,7 @@ public partial class DHassignRepresentative : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -47,10 +47,12 @@ public partial class DHassignRepresentative : System.Web.UI.Page
             int selectedVal = Convert.ToInt32(DropDownList1.SelectedValue);
             d.setRepresentative(selectedVal);
             d.changePreviousRepresentative(e1.employeecode);
+            List<Employee> elist = d.PopulateEmpList(headcode);
+            DropDownList1.DataSource = elist;
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

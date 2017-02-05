@@ -23,7 +23,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
         //List<Item> catalogue = scService.getCatalogue();
         //GridView1.DataSource = catalogue;
@@ -39,7 +39,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -60,7 +60,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -74,7 +74,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -92,7 +92,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -111,7 +111,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -182,7 +182,7 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

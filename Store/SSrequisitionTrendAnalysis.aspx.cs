@@ -51,7 +51,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void Button1_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -152,7 +152,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -175,7 +175,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -198,7 +198,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -219,7 +219,7 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

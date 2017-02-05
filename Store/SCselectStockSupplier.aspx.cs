@@ -36,7 +36,7 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     
@@ -59,7 +59,7 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -75,7 +75,7 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void DropDownList4_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,7 +89,7 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

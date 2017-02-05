@@ -106,7 +106,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

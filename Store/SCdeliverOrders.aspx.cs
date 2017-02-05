@@ -103,7 +103,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -136,7 +136,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -183,7 +183,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
 
@@ -222,7 +222,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
 
@@ -318,7 +318,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }

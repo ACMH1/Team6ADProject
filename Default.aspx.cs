@@ -67,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
 
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 }

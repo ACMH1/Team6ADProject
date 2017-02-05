@@ -16,7 +16,6 @@ public class Service : IService
     static Dictionary<int, int> hm = new Dictionary<int, int>();
     SCserviceManager scmanager = new SCserviceManager();
     DHserviceManager dhmanager = new DHserviceManager();
-    AuthserviceManager amanager = new AuthserviceManager();
     public string[] listDeliverCollectionPoint()
     {
         string token = WebOperationContext.Current.IncomingRequest.Headers["Token"];
@@ -442,7 +441,7 @@ public class Service : IService
         if (hm.TryGetValue(token1, out usercode))
         {
             string ucode = Convert.ToString(usercode);
-            if (role.Equals(Roles.GetRolesForUser(ucode)[0]) && (role.Equals("departmenthead") || role.Equals("departmentrepresentative")))
+            if (role.Equals(Roles.GetRolesForUser(ucode)[0]) && role.Equals("departmenthead"))
             {
 
 

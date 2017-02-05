@@ -39,7 +39,7 @@ public partial class DErequestItem : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
 
@@ -89,7 +89,7 @@ public partial class DErequestItem : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void rmbtn_Click(object sender, EventArgs e)
@@ -116,7 +116,7 @@ public partial class DErequestItem : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }
@@ -135,7 +135,7 @@ public partial class DErequestItem : System.Web.UI.Page
         catch (Exception)
         {
 
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -191,7 +191,7 @@ public partial class DErequestItem : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void loadPlaceholders()
@@ -272,7 +272,7 @@ public partial class DErequestItem : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }

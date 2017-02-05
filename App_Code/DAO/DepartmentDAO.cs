@@ -290,7 +290,7 @@ public static class DepartmentDAO
         Employee e1 = ctx.Employees.Where(x => x.employeecode == headcode).FirstOrDefault();
         List<Requisition> rl;
         dept = e1.deptcode;
-        rl = ctx.Requisitions.Where(x => x.deptcode == dept && x.approvercode == null && x.approvaldate == null).ToList();
+        rl = ctx.Requisitions.Where(x => x.deptcode == dept && x.approvercode == null && x.approvaldate == null && x.RequisitionItems.Count > 0).ToList();
         return rl;
     }
     public static IEnumerable<dynamic> getItems(int reqid)

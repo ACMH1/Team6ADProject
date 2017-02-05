@@ -42,7 +42,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -71,7 +71,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -116,7 +116,7 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
     }

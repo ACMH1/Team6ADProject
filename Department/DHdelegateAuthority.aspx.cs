@@ -35,7 +35,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -55,7 +55,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
@@ -67,7 +67,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 
@@ -88,7 +88,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
     protected void Calendar3_SelectionChanged(object sender, EventArgs e)
@@ -100,7 +100,7 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
         }
         catch (Exception)
         {
-            Response.Redirect("Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
     }
 

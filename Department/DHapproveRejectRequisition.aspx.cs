@@ -15,8 +15,8 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             headcode = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -43,11 +43,11 @@ public partial class DHapproveReject : System.Web.UI.Page
                     Label1.Text = "No requests exist currently";
                 }
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,7 +62,7 @@ public partial class DHapproveReject : System.Web.UI.Page
 
             List<int> ids = new List<int>();
 
-          for (int i = 0; i < GridView1.Rows.Count; i++)
+            for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 string val = GridView1.Rows[i].Cells[0].Text;
                 if (!String.IsNullOrEmpty(val))
@@ -72,19 +72,20 @@ public partial class DHapproveReject : System.Web.UI.Page
             {
                 d.approve(id, headcode);
             }
+            Response.Redirect("~/Department/DHapproveRejectRequisition.aspx");
         }
-        catch(Exception)
+        catch (Exception)
         {
             GridView1.DataSource = null;
             GridView1.DataBind();
             Label1.Text = "Approved Successfully";
         }
     }
-   
+
     private void GenerateUniqueData(int cellno)
     {
-        try
-        {
+        //try
+        //{
             //Logic for unique names
             //Step 1:
             string initialnamevalue = GridView1.Rows[0].Cells[cellno].Text;
@@ -96,21 +97,21 @@ public partial class DHapproveReject : System.Web.UI.Page
                 else
                     initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
     protected void Reject_Click(object sender, EventArgs e)
     {
         string comments;
         comments = TextBox1.Text;
-        
-        
+
+
         try
         {
-            
+
             List<int> ids = new List<int>();
 
             for (int i = 0; i < GridView1.Rows.Count; i++)
@@ -124,7 +125,7 @@ public partial class DHapproveReject : System.Web.UI.Page
                 d.reject(id);
                 d.sendRejectEmail(comments, d.getEmployee(id));
             }
-            
+
         }
         catch (Exception)
         {
@@ -134,5 +135,5 @@ public partial class DHapproveReject : System.Web.UI.Page
         }
     }
 
-    
+
 }
