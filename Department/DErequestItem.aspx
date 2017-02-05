@@ -1,29 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DErequestItem.aspx.cs" Inherits="DErequestItem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <p>
+
         <asp:Label ID="Label2" runat="server" CssClass="labels" Style="z-index: 1; position: absolute; top: 0px; left: 21px" Text="Item Category:"></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" Style="z-index: 1; position: absolute; top: 2px; left: 170px; width: 148px; height: 25px" DataSourceID="SqlDataSource1" DataTextField="category" DataValueField="category" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem>--select--</asp:ListItem>
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:team6adprojectdbConnectionstring %>" SelectCommand="SELECT DISTINCT [category] FROM [Item]"></asp:SqlDataSource>
-    </p>
-    <p>
+
+
         &nbsp;
-    </p>
-    <p>
+
         <asp:Label ID="Label3" runat="server" CssClass="labels" Style="z-index: 1; position: absolute; top: 39px; left: 19px; height: 27px;" Text="Item Code:"></asp:Label>
 
         <asp:DropDownList ID="DropDownList7" runat="server" Style="z-index: 1; position: absolute; top: 40px; left: 170px; width: 148px; height: 25px" AutoPostBack="True">
             <asp:ListItem>--select--</asp:ListItem>
         </asp:DropDownList>
-    </p>
-    <p>
+
         <asp:Button ID="Button1" runat="server" class="btn btn-warning" Style="z-index: 1; position: absolute; top: 80px; left: 170px" Text="Add To Cart" OnClick="Button1_Click" AutoPostBack="true" />
-    </p>
-    <p>
 
 
+
+        <asp:Label ID="Label1" runat="server" Style="z-index: 1; position: absolute; top: 115px; left: 23px"></asp:Label>
+
+        &nbsp;
+
+        &nbsp;
+
+
+
+        &nbsp;
+
+        
+    <br />
+    <br /><br /><br /><br />
         <table style="width: 65%; height: 188px">
             <tr>
                 <td>
@@ -63,20 +73,6 @@
                     <asp:Button ID="SubmitBtn" runat="server" OnClick="SubmitBtn_Click" class="btn btn-success" Style="z-index: 1; position: relative;" Text="Submit" /></td>
             </tr>
         </table>
-        <asp:Label ID="Label1" runat="server" Style="z-index: 1; position: absolute; top: 115px; left: 23px"></asp:Label>
-    </p>
-    <p>
-        &nbsp;
-    </p>
-    <p>
-        &nbsp;
-    </p>
-
-
-    <p>
-        &nbsp;
-    </p>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
          
 </asp:Content>
