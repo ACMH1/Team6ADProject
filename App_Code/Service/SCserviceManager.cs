@@ -825,7 +825,7 @@ public class SCserviceManager
         MailMessage mail = new MailMessage();
         mail.Body = message;
 
-        mail.From = new MailAddress("sysgen@gmail.com");
+        mail.From = new MailAddress("sysgenlogicu@gmail.com");
         mail.To.Add(new MailAddress(toemail));
         smtpClient.Send(mail);
     }

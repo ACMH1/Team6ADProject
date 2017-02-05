@@ -100,7 +100,7 @@ public class DHserviceManager
             mail.Body = message;
 
             //Setting From , To and CC
-            mail.From = new MailAddress("sysgen@gmail.com");
+            mail.From = new MailAddress("sysgenlogicu@gmail.com");
             // mail.From = new MailAddress(email);
             mail.To.Add(new MailAddress(email));
             // mail.CC.Add(new MailAddress("843168572@qq.com"));

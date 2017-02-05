@@ -241,7 +241,7 @@ public static class DepartmentDAO
 
         Employee e1 = ctx.Employees.Where(x => x.employeecode == headcode).First();
         dept = e1.deptcode;
-        List<Employee> Elist = ctx.Employees.Where(x => x.deptcode == dept && x.role != "departmenthead").ToList();
+        List<Employee> Elist = ctx.Employees.Where(x => x.deptcode == dept && x.role == "departmentemployee").ToList();
         ctx.SaveChanges();
         return Elist;
     }
@@ -394,60 +394,60 @@ public static class DepartmentDAO
 
 
 
-public static void retrieveAuthority(int headcode)
-{
-    string deptcode;
-
-    Employee e = ctx.Employees.Where(x => x.employeecode == headcode && x.role == "delegatedhead" || x.role == "departmenthead").FirstOrDefault();
-    e.role = "departmenthead";
-    deptcode = e.deptcode;
-    Employee e1 = ctx.Employees.Where(x => x.role == "delegatedemployee" || x.role == "departmentemployee" && x.deptcode == deptcode).FirstOrDefault();
-    e1.role = "departmentemployee";
-    Department d = ctx.Departments.Where(x => x.deptcode == deptcode).First();
-    d.delegatecode = null;
-    d.startdate = null;
-    d.enddate = null;
-    ctx.SaveChanges();
-    if (Roles.IsUserInRole(e.employeecode.ToString(), "delegatedhead"))
+    public static void retrieveAuthority(int headcode)
     {
-        Roles.AddUserToRole(e.employeecode.ToString(), "departmenthead");
-        Roles.RemoveUserFromRole(e.employeecode.ToString(), "delegatedhead");
-    }
-    if (Roles.IsUserInRole(e1.employeecode.ToString(), "delegatedemployee"))
-    {
-        Roles.AddUserToRole(e1.employeecode.ToString(), "departmentemployee");
-        Roles.RemoveUserFromRole(e1.employeecode.ToString(), "delegatedemployee");
-    }
-}
-public static void errormessage(string myStringVariable)
-{
-    System.Diagnostics.Debug.Write(myStringVariable);
-}
-public static List<RequisitionItem> findRequisitionItemsByHead(int headcode)
-{
-    Employee head = ctx.Employees.Where(x => x.employeecode == headcode).FirstOrDefault();
-    string deptcode = head.deptcode;
-    List<Requisition> items = ctx.Requisitions.Where(x => x.deptcode == deptcode && x.approvercode == null && x.approvaldate == null).ToList<Requisition>();
-    List<RequisitionItem> ritems = new List<RequisitionItem>();
-    foreach (Requisition i in items)
-    {
-        ritems.AddRange(i.RequisitionItems);
-    }
-    return ritems;
+        string deptcode;
 
-}
-public static Requisition findRequisitionByRequisitionId(int requisitionid)
-{
-    Requisition item = ctx.Requisitions.Where(x => x.requisitionid == requisitionid).FirstOrDefault();
-    return item;
+        Employee e = ctx.Employees.Where(x => x.employeecode == headcode && x.role == "delegatedhead" || x.role == "departmenthead").FirstOrDefault();
+        e.role = "departmenthead";
+        deptcode = e.deptcode;
+        Employee e1 = ctx.Employees.Where(x => x.role == "delegatedemployee" || x.role == "departmentemployee" && x.deptcode == deptcode).FirstOrDefault();
+        e1.role = "departmentemployee";
+        Department d = ctx.Departments.Where(x => x.deptcode == deptcode).First();
+        d.delegatecode = null;
+        d.startdate = null;
+        d.enddate = null;
+        ctx.SaveChanges();
+        if (Roles.IsUserInRole(e.employeecode.ToString(), "delegatedhead"))
+        {
+            Roles.AddUserToRole(e.employeecode.ToString(), "departmenthead");
+            Roles.RemoveUserFromRole(e.employeecode.ToString(), "delegatedhead");
+        }
+        if (Roles.IsUserInRole(e1.employeecode.ToString(), "delegatedemployee"))
+        {
+            Roles.AddUserToRole(e1.employeecode.ToString(), "departmentemployee");
+            Roles.RemoveUserFromRole(e1.employeecode.ToString(), "delegatedemployee");
+        }
+    }
+    public static void errormessage(string myStringVariable)
+    {
+        System.Diagnostics.Debug.Write(myStringVariable);
+    }
+    public static List<RequisitionItem> findRequisitionItemsByHead(int headcode)
+    {
+        Employee head = ctx.Employees.Where(x => x.employeecode == headcode).FirstOrDefault();
+        string deptcode = head.deptcode;
+        List<Requisition> items = ctx.Requisitions.Where(x => x.deptcode == deptcode && x.approvercode == null && x.approvaldate == null).ToList<Requisition>();
+        List<RequisitionItem> ritems = new List<RequisitionItem>();
+        foreach (Requisition i in items)
+        {
+            ritems.AddRange(i.RequisitionItems);
+        }
+        return ritems;
 
-}
-public static Employee findHeadByDepartment(string deptcode)
-{
-    return ctx.Employees.Where(x => x.deptcode == deptcode && (x.role == "delegatedhead" || x.role == "departmenthead")).FirstOrDefault();
-}
-public static List<Department> ListAllDepartments()
-{
-    return ctx.Departments.ToList();
-}
+    }
+    public static Requisition findRequisitionByRequisitionId(int requisitionid)
+    {
+        Requisition item = ctx.Requisitions.Where(x => x.requisitionid == requisitionid).FirstOrDefault();
+        return item;
+
+    }
+    public static Employee findHeadByDepartment(string deptcode)
+    {
+        return ctx.Employees.Where(x => x.deptcode == deptcode && (x.role == "delegatedhead" || x.role == "departmenthead")).FirstOrDefault();
+    }
+    public static List<Department> ListAllDepartments()
+    {
+        return ctx.Departments.ToList();
+    }
 }

@@ -159,7 +159,7 @@ public class SSserviceManager
         mail.Body = message;
 
         //Setting From , To and CC
-        mail.From = new MailAddress("sysgen@gmail.com");
+        mail.From = new MailAddress("sysgenlogicu@gmail.com");
         mail.To.Add(new MailAddress(toemail));
         //  mail.CC.Add(new MailAddress("843168572@qq.com"));
         smtpClient.Send(mail);
