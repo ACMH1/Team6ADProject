@@ -64,20 +64,20 @@ public class DHserviceManager
 
     }
 
-    public void sendRejectEmail(string comments)
+    public void sendRejectEmail(string comments, string email)
     {
         if (comments != null)
         {
-            sendEmail(comments);
+            sendEmail(comments, email);
         }
         else
         {
             comments = "your request was rejected";
-            sendEmail(comments);
+            sendEmail(comments, email);
         }
     }
 
-    public void sendEmail(string message)
+    public void sendEmail(string message, string email)
     {
         try
         {
@@ -100,9 +100,9 @@ public class DHserviceManager
             mail.Body = message;
 
             //Setting From , To and CC
-            mail.From = new MailAddress("kaparnanair02@gmail.com");
+            mail.From = new MailAddress("sysgen@gmail.com");
             // mail.From = new MailAddress(email);
-            mail.To.Add(new MailAddress("kaparnanair02@gmail.com"));
+            mail.To.Add(new MailAddress(email));
             // mail.CC.Add(new MailAddress("843168572@qq.com"));
             // mail.To.Add(new MailAddress(email));
             smtpClient.Send(mail);

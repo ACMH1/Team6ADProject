@@ -9,12 +9,19 @@ using System.Web;
 /// </summary>
 public static class TransactionDAO
 {
-    public static void populateTransactions()
+    public static void repopulateTransactions()
     {
         //Initialise set to capture items that experience changes
         HashSet<Item> items = new HashSet<Item>();
 
         team6adprojectdbEntities ctx = new team6adprojectdbEntities();
+
+        //Clear out transactions database
+        foreach (Transaction t in ctx.Transactions.ToList())
+        {
+            ctx.Transactions.Remove(t);
+        }
+        ctx.SaveChanges();
         List<Transaction> transactions = new List<Transaction>();
 
         //Generate transactions from disbursements

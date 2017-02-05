@@ -416,7 +416,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     disb.representativecode = repcode;
                     disb.deptcode = dept;
                     disbid = sc.addtodisbursement(disb);
-
+                    sc.sendMailToEmployee("Your requisition has been accepted and delivery is being performed.", sc.getRepresentativeEmail(repcode));
 
                     GridViewRow row = GridView1.Rows[i];
                     TextBox tx = (TextBox)row.FindControl("Textfrom");

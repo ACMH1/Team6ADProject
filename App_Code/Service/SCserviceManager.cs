@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
-
 
 /// <summary>
 /// Summary description for SCserviceManager
@@ -812,5 +812,21 @@ public class SCserviceManager
         List<DisbursementItem> items = new List<DisbursementItem>();
         items = StoreDepartmentDAO.findDeliverDisburseItemByDisburseid(deptcode, col);
         return items;
+    }
+
+    public string getRepresentativeEmail(int representativecode)
+    {
+        return EmployeeDAO.FindEmployeebyID(representativecode).employeeemail;
+    }
+
+    public void sendMailToEmployee(string message, string toemail)
+    {
+        SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
+        MailMessage mail = new MailMessage();
+        mail.Body = message;
+
+        mail.From = new MailAddress("sysgen@gmail.com");
+        mail.To.Add(new MailAddress(toemail));
+        smtpClient.Send(mail);
     }
 }

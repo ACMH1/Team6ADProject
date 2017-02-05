@@ -328,9 +328,9 @@ public class Service : IService
 
                 int id = Convert.ToInt32(requisitionid);
                 Requisition item = dhmanager.findRequisitionByRequisitionId(id);
-                //dhmanager.sendRejectEmail("android reject requisition");
                 dhmanager.reject(id);
-
+                dhmanager.sendRejectEmail(String.Format("Your requisition : {0} is rejected",item.requisitionid), item.Employee.employeeemail);
+                
             }
 
 

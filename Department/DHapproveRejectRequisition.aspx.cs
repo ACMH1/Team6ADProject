@@ -106,7 +106,7 @@ public partial class DHapproveReject : System.Web.UI.Page
     {
         string comments;
         comments = TextBox1.Text;
-        d.sendRejectEmail(comments);
+        
         
         try
         {
@@ -122,7 +122,9 @@ public partial class DHapproveReject : System.Web.UI.Page
             foreach (int id in ids)
             {
                 d.reject(id);
+                d.sendRejectEmail(comments, d.getEmployee(id));
             }
+            
         }
         catch (Exception)
         {
