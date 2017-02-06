@@ -14,40 +14,40 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
     //Populate data into GridView
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             if (!IsPostBack)
             {
                 bindGridView();
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
         //List<Item> catalogue = scService.getCatalogue();
         //GridView1.DataSource = catalogue;
         //GridView1.DataBind();
     }
     private void bindGridView()
     {
-        try
-        {
+        //try
+        //{
             List<Supplier> slist = scService.getSupplier();
             GridView1.DataSource = slist;
             GridView1.DataBind();
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     //Select row in GridView
     protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
     {
-        try
-        {
+        //try
+        //{
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1,
@@ -57,49 +57,49 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
                     "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FDCB0A';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalcolor;");
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        try
-        {
+        //try
+        //{
             int index = Convert.ToInt32(e.CommandArgument);
             bindGridView();
             GridView1.Rows[index].Attributes.Add("style", "background-color:#FDCB0A");
             // GridView1.Rows[index].Attributes.Add("class", "mycustomclass");
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     //button 
     protected void Delete_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             GridViewRow row = GridView1.SelectedRow;
             string suppliercode = row.Cells[0].Text;
             Supplier s = scService.getSupplier(suppliercode);
             scService.deleteSupplier(s);
 
             Response.Redirect("SCupdateSupplierInformation.aspx");
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void Modify_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             GridViewRow row = GridView1.SelectedRow;
             TextBox1.Text = row.Cells[0].Text;
             TextBox2.Text = row.Cells[1].Text;
@@ -108,11 +108,11 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
             TextBox5.Text = row.Cells[4].Text;
             TextBox6.Text = row.Cells[5].Text;
             TextBox7.Text = row.Cells[6].Text;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 
@@ -143,8 +143,8 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
 
     protected void Save_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Supplier s = new Supplier();
             s.suppliercode = TextBox1.Text;
             s.suppliername = TextBox2.Text;
@@ -179,10 +179,10 @@ public partial class SCupdateSupplierInformation : System.Web.UI.Page
                 scService.saveSupplier(s);
             }
             Response.Redirect("SCupdateSupplierInformation.aspx");
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 }

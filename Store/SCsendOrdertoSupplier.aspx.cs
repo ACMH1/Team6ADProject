@@ -14,8 +14,8 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (GridView1.Rows.Count == 0)
@@ -53,19 +53,19 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
 
 
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
 
     }
 
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Item item = sc.getsuppliercode(DropDownList2.SelectedValue);
 
 
@@ -84,11 +84,11 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
             RadioButton2.Checked = false;
             RadioButton3.Checked = false;
             RadioButton1.Checked = true;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
       
 
        
@@ -104,8 +104,8 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
 
-        try
-        {
+        //try
+        //{
             //Button1.Visible = true;
             Button2.Visible = true;
             Item item = sc.getsuppliercode(DropDownList2.SelectedValue);
@@ -227,11 +227,11 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                 sno++;
                 ViewState["sno"] = sno;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
       
 
 
@@ -244,18 +244,18 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     }
     protected void MyButtonClick(object sender, System.EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             //Get the button that raised the event
             Button btn = (Button)sender;
 
             //Get the row that contains this button
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
        
         
         
@@ -275,8 +275,8 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     {
 
 
-        try
-        {
+        //try
+        //{
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 Item item = new Item();
@@ -304,18 +304,18 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
             GridView1.DataSource = dt;
             GridView1.DataBind();
             this.Page_Load(null, null);
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
       
     }
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             int flag = 0;
             DataTable dt = new DataTable();
             // dt = (DataTable)ViewState["list"];
@@ -384,11 +384,11 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                     ViewState["list"] = dt;
                 }
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 

@@ -15,8 +15,8 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             adjs = ssmanager.findUnapprovedVouchers();
@@ -37,17 +37,17 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                     refreshGV2();
                 }
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        try
-        {
+        //try
+        //{
             switch (e.CommandName)
             {
                 case "Details":
@@ -109,17 +109,17 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                         break;
                     }
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             foreach (AdjustmentVoucher i in adjs)
             {
                 try
@@ -133,30 +133,30 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
             }
             refreshGV2();
             Label1.Text = "All Adjustment vouchers approved today and are planned to deliver on " + DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + ".";
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
     protected void refreshGV2()
     {
-        try
-        {
+        //try
+        //{
             adjs = StoreSupplierDAO.findUnapprovedVouchers();
             GridView2.DataSource = adjs;
             GridView2.DataBind();
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             foreach (AdjustmentVoucher i in adjs)
             {
                 int poNum = i.vouchernumber;
@@ -192,10 +192,10 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
             TextBox1.Text = "";
             refreshGV2();
             Label1.Text = "All Adjustment vouchers have been rejected.";
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 }

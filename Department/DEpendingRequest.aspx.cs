@@ -19,8 +19,8 @@ public partial class DEpendingRequest : System.Web.UI.Page
         List<dynamic> rRIL = new List<dynamic>();
         if (!IsPostBack)
         {
-            try
-            {
+            //try
+            //{
                 rRIL = eM.retreiveRequistionsItems(ecode);
                 bool isEmpty = !rRIL.Any();
                 if (isEmpty)
@@ -53,11 +53,11 @@ public partial class DEpendingRequest : System.Web.UI.Page
                         }
                     }
                 }
-            }
-            catch
-            {
-                Response.Redirect("~/Error.aspx");
-            }
+            //}
+            //catch
+            //{
+            //    Response.Redirect("~/Error.aspx");
+            //}
         }
 
     }
@@ -125,7 +125,7 @@ public partial class DEpendingRequest : System.Web.UI.Page
                 }
             }
             Response.Redirect(Request.RawUrl);
-        }
+        //}
         //catch (Exception ex)
         //{
         //    MessageBox.Show(this.Page, "delete failed. try again");

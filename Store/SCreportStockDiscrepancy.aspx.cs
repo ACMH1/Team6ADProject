@@ -19,8 +19,8 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -36,40 +36,40 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
 
                 Calendar1.SelectedDate = DateTime.Today;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             List<string> list = scService.getItemCodeBySupplierCode(DropDownList2.SelectedValue);
             DropDownList1.DataSource = list;
             DropDownList1.DataBind();
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Item i = scService.getItem(DropDownList1.SelectedValue);
             TextBox1.Text = i.category;
             TextBox2.Text = i.itemdescription;
             TextBox3.Text = Convert.ToString(i.quantityonhand);
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void DateSelectedChanged(object sender, EventArgs e)
@@ -79,8 +79,8 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
 
     protected void Add_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             AdjustmentItem ait = new AdjustmentItem();
 
             ait.itemcode = DropDownList1.SelectedValue;
@@ -112,17 +112,17 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
             cost = cost + price * Convert.ToInt32(TextBox4.Text);
             TextBox4.Text = "";
             TextBox5.Text = "";
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void Report_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             //AdjustmentVoucher avoucher = new AdjustmentVoucher();
             avoucher.issuedate = Calendar1.SelectedDate;
             avoucher.cost = cost;
@@ -137,11 +137,11 @@ public partial class SCreportStockDiscrepancy : System.Web.UI.Page
             TextBox4.Text = "";
             TextBox5.Text = "";
             Response.Write("<script>alert('Adjustment sent.');</script>");
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
 
