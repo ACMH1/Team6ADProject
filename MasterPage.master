@@ -157,7 +157,7 @@ a{
             </ul>
             <ol class="nav navbar-nav navbar-right">
 
-                <li><a href="~/Default.aspx"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                <li><a href="../Default.aspx"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
             </ol>
         </div>
     </nav>

@@ -15,8 +15,8 @@ public partial class DHassignRepresentative : System.Web.UI.Page
     DHserviceManager d = new DHserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             headcode = Convert.ToInt32(id.Name);
             e1 = d.getDepartmentRepresentative(headcode);
@@ -31,28 +31,28 @@ public partial class DHassignRepresentative : System.Web.UI.Page
 
                 Label1.Text = e1.employeename;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Label1.Text = DropDownList1.SelectedItem.Text;
             int selectedVal = Convert.ToInt32(DropDownList1.SelectedValue);
             d.setRepresentative(selectedVal);
             d.changePreviousRepresentative(e1.employeecode);
             List<Employee> elist = d.PopulateEmpList(headcode);
             DropDownList1.DataSource = elist;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 }

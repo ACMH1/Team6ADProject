@@ -70,8 +70,8 @@ public partial class DEpendingRequest : System.Web.UI.Page
 
     protected void updateBtn_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             foreach (GridViewRow row in GridView1.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -94,19 +94,19 @@ public partial class DEpendingRequest : System.Web.UI.Page
                 }
             }
             Response.Redirect(Request.RawUrl);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(this.Page, "update failed. try again");
-            System.Diagnostics.Debug.WriteLine(ex);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    MessageBox.Show(this.Page, "update failed. try again");
+        //    System.Diagnostics.Debug.WriteLine(ex);
+        //}
 
     }
 
     protected void deleteBtn_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             foreach (GridViewRow row in GridView1.Rows)
             {
                 if (row.RowType == DataControlRowType.DataRow)
@@ -126,19 +126,19 @@ public partial class DEpendingRequest : System.Web.UI.Page
             }
             Response.Redirect(Request.RawUrl);
         }
-        catch (Exception ex)
-        {
-            MessageBox.Show(this.Page, "delete failed. try again");
-            System.Diagnostics.Debug.WriteLine(ex);
-        }
+        //catch (Exception ex)
+        //{
+        //    MessageBox.Show(this.Page, "delete failed. try again");
+        //    System.Diagnostics.Debug.WriteLine(ex);
+        //}
 
 
     }
 
     protected void chkRow_CheckedChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             if (((CheckBox)sender).Checked)
             {
                 //txtBoxQty.Enable = true;
@@ -175,12 +175,12 @@ public partial class DEpendingRequest : System.Web.UI.Page
                 }
                 System.Diagnostics.Debug.WriteLine("False");
             }
-        }
+        //}
 
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
 

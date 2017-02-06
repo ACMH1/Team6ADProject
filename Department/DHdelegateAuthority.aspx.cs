@@ -17,8 +17,8 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
     //static bool button2_was_clicked = false;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             headcode = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -32,18 +32,18 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
                 DropDownList1.DataValueField = "employeecode";
                 DropDownList1.DataBind();
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
 
-        try
-        {
+        //try
+        //{
             if (Calendar1.Visible)
             {
                 Calendar1.Visible = false;
@@ -52,31 +52,31 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
             {
                 Calendar1.Visible = true;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             TextBox1.Text = Calendar1.SelectedDate.ToString();
             Calendar1.Visible = false;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
 
     protected void ImageButton3_Click(object sender, ImageClickEventArgs e)
     {
 
-        try
-        {
+        //try
+        //{
             if (Calendar3.Visible)
             {
                 Calendar3.Visible = false;
@@ -85,23 +85,23 @@ public partial class DHdeligateAuthority : System.Web.UI.Page
             {
                 Calendar3.Visible = true;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
     protected void Calendar3_SelectionChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             TextBox2.Text = Calendar3.SelectedDate.ToString();
             Calendar3.Visible = false;
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

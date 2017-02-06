@@ -14,8 +14,8 @@ public partial class DHsetCollectionPoint : System.Web.UI.Page
     Department d1;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             code = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -23,24 +23,24 @@ public partial class DHsetCollectionPoint : System.Web.UI.Page
                 d1 = d.DHfindCurrentCollectionPoint(code);
                 Label3.Text = d1.collectionpoint;
             }
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             string SelectedValue = RadioButtonList1.SelectedValue;
             Label3.Text = SelectedValue;
             d.DHupdateCollectionPoint(SelectedValue, code);
-        }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 }
