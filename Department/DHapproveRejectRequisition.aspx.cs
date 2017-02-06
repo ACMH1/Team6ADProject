@@ -41,6 +41,8 @@ public partial class DHapproveReject : System.Web.UI.Page
                 {
                     GridView1.Visible = false;
                     Label1.Text = "No requests exist currently";
+                    Button1.Visible = false;
+                    Reject.Visible = false;
                 }
             }
         }

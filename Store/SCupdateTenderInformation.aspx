@@ -45,10 +45,10 @@
 
     <table style="position: absolute; top: 475px; left: 93px;">
        <tr>
-            <td style="width: 256px">
+            <td style="width: 256px; height: 28px;">
                <asp:Label ID="Label3" CssClass="labels" runat="server" style="z-index: 1;  top: 114px; left: 128px; width: 22px;" Text="ItemCode"></asp:Label>
             </td>
-            <td>
+            <td style="height: 28px">
                 <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; position: relative; width: 240px"></asp:TextBox>
             </td>
            
@@ -68,7 +68,6 @@
             </td>
             <td>
                 <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; position: relative; width: 240px; margin-top: 0;"></asp:TextBox>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Price needs to be a number" ControlToValidate="TextBox2" ForeColor="Red" Type="Currency"></asp:CompareValidator>
             </td>
            
         </tr>
