@@ -16,8 +16,8 @@ public partial class SCprocessRequest : System.Web.UI.Page
     //static int clerkcode;
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -172,11 +172,11 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     Button1.Visible = false;
                 }
             }
-    }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
 
@@ -185,8 +185,8 @@ public partial class SCprocessRequest : System.Web.UI.Page
     private void GenerateUniqueData(int cellno)
     {
 
-        try
-        {
+        //try
+        //{
             int z = 0;
             int j = 0;
             int y = 0;
@@ -326,18 +326,18 @@ public partial class SCprocessRequest : System.Web.UI.Page
 
                 }
             }
-    }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             System.Threading.Thread.Sleep(1000);
             List<string> error = new List<string>();
             if (GridView1.Rows.Count != 0)
@@ -543,11 +543,11 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 // Label1.Text = s;
 
             }
-    }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
     }
 
 
@@ -557,8 +557,8 @@ public partial class SCprocessRequest : System.Web.UI.Page
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Button2.Visible = false;
             Button3.Visible = true;
             Button1.Visible = true;
@@ -661,18 +661,18 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button3.Visible = true;
                 Button1.Visible = false;
             }
-    }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Button3.Visible = false;
             Button2.Visible = true;
             List<string> unique = sc.getuniqueitems();
@@ -776,11 +776,11 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button1.Visible = false;
 
             }
-    }
-        catch (Exception)
-        {
-            Response.Redirect("~/Error.aspx");
-        }
+        //}
+        //catch (Exception)
+        //{
+        //    Response.Redirect("~/Error.aspx");
+        //}
 
     }
 }
