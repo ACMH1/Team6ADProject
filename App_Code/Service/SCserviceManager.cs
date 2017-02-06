@@ -821,12 +821,12 @@ public class SCserviceManager
 
     public void sendMailToEmployee(string message, string toemail)
     {
-        SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
-        MailMessage mail = new MailMessage();
-        mail.Body = message;
+        //SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
+        //MailMessage mail = new MailMessage();
+        //mail.Body = message;
 
-        mail.From = new MailAddress("sysgenlogicu@gmail.com");
-        mail.To.Add(new MailAddress(toemail));
-        smtpClient.Send(mail);
+        //mail.From = new MailAddress("sysgenlogicu@gmail.com");
+        //mail.To.Add(new MailAddress(toemail));
+        //smtpClient.Send(mail);
     }
 }

@@ -172,7 +172,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     Button1.Visible = false;
                 }
             }
-        }
+    }
         catch (Exception)
         {
             Response.Redirect("~/Error.aspx");
@@ -269,7 +269,14 @@ public partial class SCprocessRequest : System.Web.UI.Page
 
                     initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
 
+                try
+                {
                     qty = Convert.ToDouble(GridView1.Rows[i].Cells[2].Text);
+                }
+                catch (Exception)
+                {
+                    Response.Redirect("~/Error.aspx");
+                }
                     Session["value"] = i;
                     y = z + dneed.Count;
                     allocated = sc.recommendDistribution(initialvalue, dneed);
@@ -319,7 +326,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
 
                 }
             }
-        }
+    }
         catch (Exception)
         {
             Response.Redirect("~/Error.aspx");
@@ -536,7 +543,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 // Label1.Text = s;
 
             }
-        }
+    }
         catch (Exception)
         {
             Response.Redirect("~/Error.aspx");
@@ -654,7 +661,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button3.Visible = true;
                 Button1.Visible = false;
             }
-        }
+    }
         catch (Exception)
         {
             Response.Redirect("~/Error.aspx");
@@ -769,7 +776,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button1.Visible = false;
 
             }
-        }
+    }
         catch (Exception)
         {
             Response.Redirect("~/Error.aspx");

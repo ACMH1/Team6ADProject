@@ -35,7 +35,6 @@
         <tr>
             <td style="width: 241px">&nbsp;<label class="labels">Adjust</label></td>
             <td>&nbsp;<asp:TextBox ID="TextBox4" runat="server" Width="214px"></asp:TextBox>
-                <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Must be an integer." ForeColor="Red" Type="Integer"></asp:RangeValidator>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox4" ErrorMessage="Please enter a quantity." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
