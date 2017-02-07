@@ -1,9 +1,39 @@
 import requests
 import json
 
-url = "http://192.168.1.181/testWCF/Service.svc/Create"
-post_fields = {"Category":"Bags","Description":"Pink Balenciaga. Brand New in packagingtest1","ItemID":56,"Price":3000,"Status":1,"Title":"Balenciaga"}
-post_field = {"ItemID":2}
+url = "http://10.10.2.73/Team6ADProjectuat/WCF/Service.svc/disbursement/update"
+post_fields = [
+      {
+        "Actualquantity": 11,
+        "Allocatedquantity": 57,
+        "Disbursementid": 2,
+        "Itemcode": "E002"
+      },
+      {
+        "Actualquantity": 11,
+        "Allocatedquantity": 33,
+        "Disbursementid": 2,
+        "Itemcode": "E005"
+      },
+      {
+        "Actualquantity": 11,
+        "Allocatedquantity": 37,
+        "Disbursementid": 2,
+        "Itemcode": "E020"
+      },
+      {
+        "Actualquantity": 11,
+        "Allocatedquantity": 14,
+        "Disbursementid": 2,
+        "Itemcode": "F034"
+      },
+      {
+        "Actualquantity": 11,
+        "Allocatedquantity": 23,
+        "Disbursementid": 2,
+        "Itemcode": "T020"
+      }
+    ]
 
 r = requests.post(url,json=post_fields)
 r.close()

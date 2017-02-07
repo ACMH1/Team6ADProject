@@ -1,4 +1,4 @@
-﻿using Model;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,10 +82,7 @@ public class SCserviceManager
         req.supplier2 = i.supplier2;
         req.supplier3 = i.supplier3;
 
-        //Item it = getItem(i.itemcode);
-        //it.supplier1 = i.supplier1;
-        //it.supplier2 = i.supplier2;
-        //it.supplier3 = i.supplier3;
+       
         sce.SaveChanges();
     }
 
@@ -127,7 +124,7 @@ public class SCserviceManager
     public void deleteSupplier(Supplier s)
     {
         s.del = 1;
-        //sce.Suppliers.Remove(s);
+       
         sce.SaveChanges();
     }
 
@@ -185,41 +182,7 @@ public class SCserviceManager
 
         sce.SaveChanges();
     }
-    //public void updateTenderQuotation(Item i,TenderQuotation tq)
-    //{
-
-    //    Item item = new Item();
-    //    item = getItem(i.itemcode);
-    //    item.itemdescription = i.itemdescription;
-
-    //    TenderQuotation tender = new TenderQuotation();
-    //    tender = getTenderQuotationByKey(tq.suppliercode, tq.itemcode);
-    //    tender.price = tq.price;
-
-    //    sce.SaveChanges();     
-    //}
-
-    //public List<Item> getItemByListcode(List<string> list)
-    //{
-    //    List<Item> ilist = new List<Item>();
-    //    for (int i = 0; i < list.Count; i++)
-    //    {
-    //        Item item = sce.Items.Where(x => x.itemcode == list[i]).Select(y => y).FirstOrDefault();
-    //        ilist.Add(item);
-    //    }
-    //    return ilist;
-    //}
-    //public List<double> getPriceByListcode(List<string> list)
-    //{
-    //    List<double> plist = new List<double>();
-    //    for (int i = 0; i < list.Count; i++)
-    //    {
-    //        double price = sce.TenderQuotations.Where(x => x.itemcode == list[i]).Select(y => y.price).FirstOrDefault();
-    //        plist.Add(price);
-    //    }
-    //    return plist;
-    //}
-
+   
     //Report stock discrepancy
     public List<string> getItemCodeBySupplierCode(string suppliercode)
     {
@@ -232,9 +195,7 @@ public class SCserviceManager
     public void adjustItem(AdjustmentVoucher adjust)
     {
 
-        //sce.AdjustmentItems.Add(adjust);
-
-        //sce.SaveChanges();
+      
 
         sce.AdjustmentVouchers.Add(adjust);
         sce.SaveChanges();
@@ -312,25 +273,7 @@ public class SCserviceManager
         trans = sce.Transactions.Where(x => x.itemcode == id).ToList();
         return trans;
     }
-    //public List<> getrequest()
-    //{
-
-    //var req = (from z in sce.Requisitions.Select(x => x).DefaultIfEmpty()
-    //           from p in sce.RequisitionItems.Where(x => x.requisitionid == z.requisitionid).DefaultIfEmpty()
-    //           from t in sce.Items.Where(x => x.itemcode == p.itemcode).DefaultIfEmpty()
-    //           select new
-    //           {
-    //               Bin = t.bin,
-    //               Description = t.itemdescripion,
-    //               Quantity = p.quantity,
-    //               Actual_qty = t.quantityonhand,
-    //               Department = z.Department.deptname,
-    //               dept_needed = p.quantity,
-    //               code = t.itemcode
-
-    //           }).ToList();
-    //}
-
+   
 
     public List<string> getuniqueitems()
     {
@@ -384,11 +327,7 @@ public class SCserviceManager
         return price;
 
     }
-    //public OrderItem getorderquantity(string code)
-    //{
-    //    OrderItem qty = sce.OrderItems.Where(c => c.itemcode == code).First();
-    //        return qty;
-    //}
+   
     public IEnumerable<dynamic> getdept(string location)
     {
         var dept = sce.Departments.Where(x => x.collectionpoint == location).Select(y => new { deptname = y.deptname, deptcode = y.deptcode }).ToList();
@@ -655,13 +594,12 @@ public class SCserviceManager
     }
     public Disbursement addtodisbursement(Disbursement disb)
     {
-        Disbursement disbursement = findunapproveddisbursement().Where(x => x.deptcode == disb.deptcode && x.representativecode == disb.representativecode).LastOrDefault();
+        Disbursement disbursement = findunapproveddisbursement().Where(x => x.deptcode == disb.deptcode && x.representativecode == disb.representativecode && x.collectiondate==null).LastOrDefault();
         if (disbursement == null)
         {
             sce.Disbursements.Add(disb);
             sce.SaveChanges();
-            disb.collectiondate = DateTime.Now;
-            TransactionDAO.addTransactionFromDisbursement(disb);
+          
             Disbursement disbid = sce.Disbursements.OrderByDescending(x => x.disbursementid).First();
             return disbid;
         }

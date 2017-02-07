@@ -6,15 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Model;
-
+//AUTHOR- VISHAL CHANDRAMENAN BUVANA
 public partial class SCretrieveStockCard : System.Web.UI.Page
 {
     
     SCserviceManager sc = new SCserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             if (!IsPostBack)
             {
                 DropDownList1.DataBind();
@@ -32,11 +32,11 @@ public partial class SCretrieveStockCard : System.Web.UI.Page
                 GridView1.DataBind();
 
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
 
     }
@@ -45,8 +45,8 @@ public partial class SCretrieveStockCard : System.Web.UI.Page
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
-        //try
-        //{
+        try
+        {
             Item item = sc.getitemdetails(DropDownList1.SelectedItem.Text);
             Label2.Text = item.itemdescription;
             Label3.Text = item.bin;
@@ -58,11 +58,11 @@ public partial class SCretrieveStockCard : System.Web.UI.Page
             GridView1.DataSource = trans;
             GridView1.DataBind();
 
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
 }

@@ -27,7 +27,7 @@ public interface IService
     [OperationContract]
     [WebGet(UriTemplate = "/disbursement/{disbursementid}", ResponseFormat = WebMessageFormat.Json)]
     WCFDisbursementItem[] findDeliverDisburseItemByDisburseid(string disbursementid);
-    //  JSON example:[
+    //JSON example:[
     //  {
     //    "Actualquantity": 11,
     //    "Allocatedquantity": 57,

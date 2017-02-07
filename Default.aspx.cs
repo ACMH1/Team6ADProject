@@ -16,8 +16,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Login1_LoggedIn(object sender, EventArgs e)
     {
-        //try
-        //{
+       
             AdminserviceManager am = new AdminserviceManager();
             DHserviceManager dm = new DHserviceManager();
 
@@ -63,11 +62,6 @@ public partial class _Default : System.Web.UI.Page
                     FormsAuthentication.RedirectToLoginPage();
                     break;
             }
-        //}
-
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        
     }
 }

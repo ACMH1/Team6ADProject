@@ -137,9 +137,7 @@ public static class StoreDepartmentDAO
     public static IEnumerable<dynamic> getrequestdept(string item)
     {
 
-        //List<int> dept = new List<int>();
-        //dept = sce.RequisitionItems.Where(x => x.itemcode==item).Select(y=> y.requisitionid).ToList();
-        //return dept;
+    
 
 
         var req = (from p in ds.RequisitionItems.Where(x => x.itemcode == item && x.status == 0 && x.Item.quantityonhand > 0)
@@ -166,11 +164,6 @@ public static class StoreDepartmentDAO
 
     public static IEnumerable<dynamic> getrequestdeptstatus2(string item)
     {
-
-        //List<int> dept = new List<int>();
-        //dept = sce.RequisitionItems.Where(x => x.itemcode==item).Select(y=> y.requisitionid).ToList();
-        //return dept;
-
 
         var req = (from p in ds.RequisitionItems.Where(x => x.itemcode == item && x.status == 2 && x.Item.quantityonhand > 0)
                    select new

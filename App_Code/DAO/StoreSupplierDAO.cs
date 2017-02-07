@@ -28,12 +28,6 @@ public static class StoreSupplierDAO
         employee = ds.Employees.Where(x => x.employeecode == employeecode).Select(y => y).FirstOrDefault();
         return employee;
     }
-    //public static List<OrderItem> findOrderItemByPurchaseOrder(int purchaseorder)
-    //{
-    //    List<OrderItem> orderitems = new List<OrderItem>();
-    //    orderitems = ds.OrderItems.Where(x => x.purchaseordernumber == purchaseorder).Select(y => y).ToList<OrderItem>();
-    //    return orderitems;
-    //}
 
     //add 1/19
     public static SOrder findUnapprovedOrderByPurchaseOrder(int purchaseorder)

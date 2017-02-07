@@ -5,15 +5,15 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+//AUTHOR- VISHAL CHANDRAMENAN BUVANA
 public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
 {
     SCserviceManager sc = new SCserviceManager();
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -39,17 +39,17 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
                     Label3.Visible = false;
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             List<int> purchaseid = sc.getpurchaseid(DropDownList2.SelectedItem.Text);
             List<dynamic> items = new List<dynamic>();
             foreach (int i in purchaseid)
@@ -68,17 +68,17 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
             {
                 Label3.Visible = false;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 string remarks = "";
@@ -113,11 +113,11 @@ public partial class SCreceiveOrderfromSupplier : System.Web.UI.Page
             {
                 Label3.Text = "No order to receive";
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
 }

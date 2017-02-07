@@ -7,20 +7,20 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Model;
 using System.Security.Principal;
-
+//AUTHOR- VISHAL CHANDRAMENAN BUVANA
 public partial class SCsendOrdertoSupplier : System.Web.UI.Page
 {
     SCserviceManager sc = new SCserviceManager();
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (GridView1.Rows.Count == 0)
             {
-                //Button1.Visible = false;
+               
                 Button2.Visible = false;
             }
             if (!IsPostBack)
@@ -53,19 +53,19 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
 
 
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
 
     }
 
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             Item item = sc.getsuppliercode(DropDownList2.SelectedValue);
 
 
@@ -84,11 +84,11 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
             RadioButton2.Checked = false;
             RadioButton3.Checked = false;
             RadioButton1.Checked = true;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
       
 
        
@@ -104,9 +104,9 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
 
-        //try
-        //{
-            //Button1.Visible = true;
+        try
+        {
+           
             Button2.Visible = true;
             Item item = sc.getsuppliercode(DropDownList2.SelectedValue);
 
@@ -116,9 +116,9 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
 
             TenderQuotation price3 = sc.getprice(item.supplier3, DropDownList2.SelectedValue);
 
-            // OrderItem order = sc.getorderquantity(DropDownList2.SelectedValue);
+          
             int quantity = Convert.ToInt32(TextBox1.Text);
-            //double qty = order.orderquantity;
+            
             double cost;
             if (RadioButton1.Checked)
             {
@@ -142,7 +142,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                     dt.Columns.Add("Price");
                     dt.Columns.Add("Amount");
                     dt.Columns.Add("Supplier");
-                    // dt.Columns.Add("Special Request");
+                  
                 }
                 dt.Rows.Add(sno, item.itemcode, item.itemdescription, quantity, price1.price, amount, item.supplier1);
 
@@ -184,7 +184,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                     dt.Columns.Add("Price");
                     dt.Columns.Add("Amount");
                     dt.Columns.Add("Supplier");
-                    //  dt.Columns.Add("Special Request");
+                    
                 }
                 dt.Rows.Add(sno, item.itemcode, item.itemdescription, quantity, price2.price, amount, item.supplier2);
                 GridView1.DataSource = dt;
@@ -206,7 +206,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                 double amount = quantity * cost;
                 DataTable dt = new DataTable();
                 dt = (DataTable)ViewState["list"];
-                //int quant = Convert.ToInt32(TextBox1.Text);
+               
                 if (dt.Rows.Count == 0)
                 {
 
@@ -217,7 +217,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                     dt.Columns.Add("Price");
                     dt.Columns.Add("Amount");
                     dt.Columns.Add("Supplier");
-                    //  dt.Columns.Add("Special Request");
+                    
                 }
                 dt.Rows.Add(sno, item.itemcode, item.itemdescription, quantity, price3.price, amount, item.supplier3);
                 GridView1.DataSource = dt;
@@ -227,11 +227,11 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                 sno++;
                 ViewState["sno"] = sno;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
       
 
 
@@ -244,18 +244,18 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     }
     protected void MyButtonClick(object sender, System.EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             //Get the button that raised the event
             Button btn = (Button)sender;
 
             //Get the row that contains this button
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
        
         
         
@@ -275,8 +275,8 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
     {
 
 
-        //try
-        //{
+        try
+        {
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 Item item = new Item();
@@ -304,21 +304,21 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
             GridView1.DataSource = dt;
             GridView1.DataBind();
             this.Page_Load(null, null);
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
       
     }
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             int flag = 0;
             DataTable dt = new DataTable();
-            // dt = (DataTable)ViewState["list"];
+           
             foreach (GridViewRow row in GridView1.Rows)
 
             {
@@ -353,7 +353,7 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                 dt.Columns.Add("Price");
                 dt.Columns.Add("Amount");
                 dt.Columns.Add("Supplier");
-                //dt = (DataTable)ViewState["list"];
+              
                 for (int i = 0; i < GridView1.Rows.Count; i++)
                 {
                     if (GridView1.Rows[i].Cells[2].Text != "")
@@ -380,15 +380,15 @@ public partial class SCsendOrdertoSupplier : System.Web.UI.Page
                     {
                         dt.Columns.RemoveAt(desiredSize);
                     }
-                    //dt.Rows.Clear();
+                   
                     ViewState["list"] = dt;
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
 

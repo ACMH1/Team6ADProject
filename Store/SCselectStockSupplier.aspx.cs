@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+//AUTHOR- BAO ZHIQIANG
 public partial class SCselectStockSupplier : System.Web.UI.Page
 {
     //Service
@@ -13,8 +13,8 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             if (!IsPostBack)
             {
                 List<string> itemcode = scService.getItemcode();
@@ -25,25 +25,23 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
                 DropDownList2.DataSource = suppliercode;
                 DropDownList2.DataBind();
 
-                //suppliercode.Remove(DropDownList2.SelectedValue);
                 DropDownList3.DataSource = suppliercode;
                 DropDownList3.DataBind();
 
-                //suppliercode.Remove(DropDownList3.SelectedValue);
                 DropDownList4.DataSource = suppliercode;
                 DropDownList4.DataBind();
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     
     protected void Update_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             string itemcode = DropDownList1.SelectedValue;
             Item i = scService.getItem(itemcode);
             i.supplier1 = DropDownList2.SelectedValue;
@@ -56,40 +54,40 @@ public partial class SCselectStockSupplier : System.Web.UI.Page
             Label1.Text = i.supplier1;
             Label2.Text = i.supplier2;
             Label3.Text = i.supplier3;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             string itemcode = DropDownList1.SelectedValue;
             Item i = scService.getItem(itemcode);
             Label1.Text = i.supplier1;
             Label2.Text = i.supplier2;
             Label3.Text = i.supplier3;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void DropDownList4_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             if ((DropDownList4.SelectedValue == DropDownList3.SelectedValue) || (DropDownList4.SelectedValue == DropDownList2.SelectedValue))
             {
                 Label4.Text = "Can not select same supplier!";
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 }

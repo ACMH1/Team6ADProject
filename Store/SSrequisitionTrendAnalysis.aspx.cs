@@ -17,8 +17,8 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
     SSserviceManager ssmanager = new SSserviceManager();
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             cate = ListBox5.SelectedValue.ToString();
             time1 = Lbmonth1.Text;
             time2 = Lbmonth2.Text;
@@ -48,28 +48,28 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
             SS.SSrequisitionTrend cryview2 = new SS.SSrequisitionTrend();
             cryview2.SetDataSource(ds);
             CrystalReportViewer1.ReportSource = cryview2;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             Label1.Text = cate;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void Btngenerate_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             cateselect = Label1.Text;
             string depcode = "";
             foreach (ListItem i in selecteditem)
@@ -119,49 +119,20 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
             cryview2.SetDataSource(ds);
             CrystalReportViewer1.ReportSource = cryview2;
 
-            //List<Supplier> selectedsupplier = new List<Supplier>();
-            //DateTime date1 = DateTime.Parse(time1);
-            //DateTime date2 = DateTime.Parse(time2);
-            //DateTime date3 = DateTime.Parse(time3);
-            //suppliers = ClassList.findSupplierByCategory(cate);
-            //for (int i = 0; i < selecteditem.Count; i++)
-            //{
-            //    if (CheckBoxList1.Items[i].Selected)
-            //    {
-            //        selectedsupplier.Add(suppliers[i]);                  
-            //    }
-            //}
-
-            //CryDataSet dset = new CryDataSet();
-            //CryDataSetTableAdapters.reordertrend21TableAdapter reordertrend = new CryDataSetTableAdapters.reordertrend21TableAdapter();
-
-            //reordertrend.Fill(dset.reordertrend21);
-            //var total = dset.reordertrend21.Select(y => y).ToList();
-            //reordertrend.FillBy(dset.reordertrend2,cate,time1,time2,time3);
-            //for ( int j=0; j<selectedsupplier.Count;j++)
-            //{                
-            //    var com = dset.reordertrend2.
-            //        Where(x =>x.suppliercode == selectedsupplier[j].suppliercode).
-            //        Select(y=> new {y.category,y.amount }).ToList();
-            //    total.Add(com);               
-            //}
-
-            //SSreorderTrend cryview = new SSreorderTrend();
-            //cryview.SetDataSource(total);
-            //CrystalReportViewer1.ReportSource = cryview;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+           
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
 
 
     protected void Btnmonth2_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             string month = selecttime.Month.ToString();
             string year = selecttime.Year.ToString();
             if (month.Length == 1)
@@ -172,19 +143,19 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
             {
                 Lbmonth2.Text = year + "-" + month;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
 
     protected void Btnmonth1_Click(object sender, EventArgs e)
     {
 
-        //try
-        //{
+        try
+        {
             string month = selecttime.Month.ToString();
             string year = selecttime.Year.ToString();
             if (month.Length == 1)
@@ -195,17 +166,17 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
             {
                 Lbmonth1.Text = year + "-" + month;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void Btnmonth3_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             string month = selecttime.Month.ToString();
             string year = selecttime.Year.ToString();
             if (month.Length == 1)
@@ -216,10 +187,10 @@ public partial class Store_SSrequisitionTrendAnalysis : System.Web.UI.Page
             {
                 Lbmonth3.Text = year + "-" + month;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 }

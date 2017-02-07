@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Model;
 using System.Security.Principal;
-
+//AUTHOR- VISHAL CHANDRAMENAN BUVANA
 public partial class SCDeliverOrders : System.Web.UI.Page
 {
 
@@ -51,22 +51,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
                 {
                     GridView1.DataSource = null;
                     GridView1.DataBind();
-                    //for (int i = 0; i < GridView1.Rows.Count; i++)
-                    //{
-                    //    string itemcode = GridView1.Rows[i].Cells[0].Text;
-                    //    List<TenderQuotation> supplier = new List<TenderQuotation>();
-                    //    //supplier.Add("Select");
-                    //    supplier = sc.getsuppliercodes(itemcode);
-                    //    GridViewRow row = GridView1.Rows[i];
-                    //    DropDownList tx = (DropDownList)row.FindControl("MyDD");
-                    //    foreach (TenderQuotation name in supplier)
-                    //    {
-                    //        tx.Items.Add(name.suppliercode);
-                    //        tx.DataBind();
-                    //    }
-
-
-                    //}
+                 
                 }
             }
             if (GridView1.Rows.Count != 0)
@@ -241,7 +226,7 @@ public partial class SCDeliverOrders : System.Web.UI.Page
             string deptcode;
             deptcode = RadioButtonList1.SelectedValue;
             int approvercode = sc.getrepresentativecode(deptcode);
-            // deptcode=sc.getdepartmentcode(deptname);
+           
             rlist = sc.getrequisitions(deptcode);
             reqlist = sc.getreq(deptcode);
 

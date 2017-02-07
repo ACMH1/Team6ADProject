@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+//AUTHOR- BAO ZHIQIANG
 public partial class SCupdateCatalog : System.Web.UI.Page
 {
     //Service
@@ -14,33 +16,31 @@ public partial class SCupdateCatalog : System.Web.UI.Page
     //Populate data into GridView
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             if (!IsPostBack)
             {
                 bindGridView();
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
-        //List<Item> catalogue = scService.getCatalogue();
-        //GridView1.DataSource = catalogue;
-        //GridView1.DataBind();
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
+      
     }
     private void bindGridView()
     {
-        //try
-        //{
+        try
+        {
             List<Item> catalogue = scService.getCatalogue();
             GridView1.DataSource = catalogue;
             GridView1.DataBind();
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     /// <summary>
     /// pagination
@@ -49,22 +49,22 @@ public partial class SCupdateCatalog : System.Web.UI.Page
     /// <param name="e"></param>
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        //try
-        //{
+        try
+        {
             GridView1.PageIndex = e.NewPageIndex;
             bindGridView();
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     //Select row in GridView
     protected void OnRowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
     {
-        //try
-        //{
+        try
+        {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Attributes["onclick"] = this.Page.ClientScript.GetPostBackClientHyperlink(this.GridView1,
@@ -74,25 +74,25 @@ public partial class SCupdateCatalog : System.Web.UI.Page
                     "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FDCB0A';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalcolor;");
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        //try
-        //{
+        try
+        {
             int index = Convert.ToInt32(e.CommandArgument);
             bindGridView();
             GridView1.Rows[index].Attributes.Add("style", "background-color:#FDCB0A");
-            // GridView1.Rows[index].Attributes.Add("class", "mycustomclass");
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+            
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
 
@@ -100,24 +100,24 @@ public partial class SCupdateCatalog : System.Web.UI.Page
     protected void Delete_Click(object sender, EventArgs e)
     {
 
-        //try
-        //{
+        try
+        {
             GridViewRow row = GridView1.SelectedRow;
             string itemcode = row.Cells[0].Text;
             scService.deleteItem(itemcode);
 
             Response.Redirect("SCupdateCatalog.aspx");
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void Modify_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             GridViewRow row = GridView1.SelectedRow;
             TextBox1.Text = row.Cells[0].Text;
             TextBox6.Text = row.Cells[1].Text;
@@ -129,17 +129,17 @@ public partial class SCupdateCatalog : System.Web.UI.Page
             Item i = scService.getItem(row.Cells[0].Text);
             TextBox5.Text = i.bin.ToString();
             TextBox1.Enabled = false;
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void Submit_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             Item i = new Item();
             i.itemcode = TextBox1.Text;
             i.category = TextBox6.Text;
@@ -174,24 +174,18 @@ public partial class SCupdateCatalog : System.Web.UI.Page
             }
 
             Response.Redirect("SCupdateCatalog.aspx");
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
     
     protected void Create_Click(object sender, EventArgs e)
     {
         Response.Redirect("SCupdateCatalog.aspx");
-        //TextBox1.Text = " ";
-        //TextBox2.Text = " ";
-        //TextBox3.Text = " ";
-        //TextBox4.Text = " ";
-        //TextBox5.Text = " ";
-        //TextBox6.Text = " ";
-        //TextBox7.Text = " ";
+       
 
     }
 }

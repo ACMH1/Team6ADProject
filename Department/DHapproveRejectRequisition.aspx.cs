@@ -15,8 +15,8 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             headcode = Convert.ToInt32(id.Name);
             if (!IsPostBack)
@@ -41,15 +41,13 @@ public partial class DHapproveReject : System.Web.UI.Page
                 {
                     GridView1.Visible = false;
                     Label1.Text = "No requests exist currently";
-                    Button1.Visible = false;
-                    Reject.Visible = false;
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
 
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,8 +84,8 @@ public partial class DHapproveReject : System.Web.UI.Page
 
     private void GenerateUniqueData(int cellno)
     {
-        //try
-        //{
+        try
+        {
             //Logic for unique names
             //Step 1:
             string initialnamevalue = GridView1.Rows[0].Cells[cellno].Text;
@@ -99,11 +97,11 @@ public partial class DHapproveReject : System.Web.UI.Page
                 else
                     initialnamevalue = GridView1.Rows[i].Cells[cellno].Text;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void Reject_Click(object sender, EventArgs e)
     {
@@ -111,8 +109,8 @@ public partial class DHapproveReject : System.Web.UI.Page
         comments = TextBox1.Text;
 
 
-        //try
-        //{
+        try
+        {
 
             List<int> ids = new List<int>();
 
@@ -128,12 +126,12 @@ public partial class DHapproveReject : System.Web.UI.Page
                 d.sendRejectEmail(comments, d.getEmployee(id));
             }
 
-        //}
-        //catch (Exception)
-        //{
-        //    GridView1.DataSource = null;
-        //    GridView1.DataBind();
-        //    Label1.Text = "Rejected";
-        //}
+        }
+        catch (Exception)
+        {
+            GridView1.DataSource = null;
+            GridView1.DataBind();
+            Label1.Text = "Rejected";
+        }
     }
 }

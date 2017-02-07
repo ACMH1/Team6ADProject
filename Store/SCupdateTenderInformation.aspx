@@ -45,10 +45,10 @@
 
     <table style="position: absolute; top: 475px; left: 93px;">
        <tr>
-            <td style="width: 256px; height: 28px;">
+            <td style="width: 256px">
                <asp:Label ID="Label3" CssClass="labels" runat="server" style="z-index: 1;  top: 114px; left: 128px; width: 22px;" Text="ItemCode"></asp:Label>
             </td>
-            <td style="height: 28px">
+            <td>
                 <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; position: relative; width: 240px"></asp:TextBox>
             </td>
            

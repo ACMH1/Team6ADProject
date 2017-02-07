@@ -6,7 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+//AUTHOR :Huang weian , Wang yuqi , Chua Ming Hao
 
 public partial class SSissueStockAdjVocher : System.Web.UI.Page
 {
@@ -15,8 +15,8 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             adjs = ssmanager.findUnapprovedVouchers();
@@ -37,17 +37,17 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                     refreshGV2();
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        //try
-        //{
+        try
+        {
             switch (e.CommandName)
             {
                 case "Details":
@@ -77,7 +77,7 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                             else
                                 ssmanager.deleteAdjustmentByVoucherNumber(poNum, role, TextBox1.Text);
                         }
-                        //ClassList.deleteAdjustmentByVoucherNumber(poNum);
+                        
                         catch (SSexception ex)
                         {
                             Label1.Text = ex.Message;
@@ -90,17 +90,11 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                 case "Approve":
                     {
                         int poNum = adjs[Convert.ToInt32(e.CommandArgument)].vouchernumber;
-                        //try
-                        //{
+                      
                         ssmanager.approveAdjustmentByVoucherNumber(poNum, role);
                         Label1.Text = String.Format("Adjustment voucher number {0} is approved by {1}.", poNum, SSserviceManager.findThreeworkingday(DateTime.Today).ToString("MM-dd-yyyy"));
                         refreshGV2();
-                        //}
-                        //catch (SSexception ex)
-                        //{
-                        //    Label1.Text = ex.Message;
-                        //}
-                        //ClassList.approveAdjVoucher(poNum);
+                       
                         break;
                     }
                 default:
@@ -109,17 +103,17 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                         break;
                     }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             foreach (AdjustmentVoucher i in adjs)
             {
                 try
@@ -133,30 +127,30 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
             }
             refreshGV2();
             Label1.Text = "All Adjustment vouchers approved today and are planned to deliver on " + DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + ".";
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void refreshGV2()
     {
-        //try
-        //{
+        try
+        {
             adjs = StoreSupplierDAO.findUnapprovedVouchers();
             GridView2.DataSource = adjs;
             GridView2.DataBind();
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             foreach (AdjustmentVoucher i in adjs)
             {
                 int poNum = i.vouchernumber;
@@ -165,7 +159,7 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                 {
                     ssmanager.deleteAdjustmentByVoucherNumber(poNum, role);
                 }
-                //ClassList.deleteAdjustmentByVoucherNumber(poNum);
+               
                 catch (SSexception ex)
                 {
                     Label1.Text = ex.Message;
@@ -175,10 +169,10 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
                 {
                     if (TextBox1.Text.Trim() == "")
                         ssmanager.sendMailToEmployee(String.Format("Adjustment voucher no. {0} has been rejected.", poNum), "hellocomplex007@gmail.com", toemail);
-                    // ClassList.sendEmail(String.Format("Adjustment voucher no. {0} has been rejected.", poNum));
+                   
                     else
                         ssmanager.sendMailToEmployee(String.Format("Adjustment voucher no. {0} has been rejected. Reason given: {1}", poNum, TextBox1.Text), "hellocomplex007@gmail.com", toemail);
-                    // ClassList.sendEmail(String.Format("Adjustment voucher no. {0} has been rejected. Reason given: {1}", poNum, TextBox1.Text));
+                    
                 }
                 catch (Exception)
                 {
@@ -192,10 +186,10 @@ public partial class SSissueStockAdjVocher : System.Web.UI.Page
             TextBox1.Text = "";
             refreshGV2();
             Label1.Text = "All Adjustment vouchers have been rejected.";
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 }

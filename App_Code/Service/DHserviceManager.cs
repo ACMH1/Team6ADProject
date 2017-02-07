@@ -81,32 +81,12 @@ public class DHserviceManager
     {
         try
         {
-            // string email;
-            // List<int> ids = new List<int>();
-
-            //for (int i = 0; i < GridView1.Rows.Count; i++)
-            //{
-            //  string val = GridView1.Rows[i].Cells[0].Text;
-            //  if (!String.IsNullOrEmpty(val))
-            // ids.Add(Convert.ToInt32(val));
-            // }
-            //  foreach (int id in ids)
-            // {
-            //   email = d.getEmployee(id);
-
             SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
-            MailMessage mail = new MailMessage();
-            // string reason = TextBox1.Text;
+            MailMessage mail = new MailMessage();        
             mail.Body = message;
-
-            //Setting From , To and CC
             mail.From = new MailAddress("sysgenlogicu@gmail.com");
-            // mail.From = new MailAddress(email);
             mail.To.Add(new MailAddress(email));
-            // mail.CC.Add(new MailAddress("843168572@qq.com"));
-            // mail.To.Add(new MailAddress(email));
-            smtpClient.Send(mail);
-            //  }
+            smtpClient.Send(mail);        
         }
         catch (Exception e)
         {

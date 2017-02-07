@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+//AUTHOR- BAO ZHIQIANG
 public partial class SCupdateTenderInformation : System.Web.UI.Page
 {
     //Service
@@ -33,17 +33,14 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             List<string> slist = scService.getSuppliername();
             DropDownList1.DataSource = slist;
             DropDownList1.DataBind();
-            //DropDownList1.SelectedIndex = 0;
+            
             string suppliername = DropDownList1.SelectedValue;
 
             Supplier s = scService.getSupplierByName(suppliername);
             Label.Text = s.address;
             string suppliercode = s.suppliercode;
 
-            //List<string> itemcode = scService.getItemCodeBySupplierCode(suppliercode);
-            //List<Item> list = scService.getItemByListcode(itemcode);
-            //List<double> plist = scService.getPriceByListcode(itemcode);
-
+           
             List<dynamic> list = scService.getTenderQuotation(suppliercode).ToList();
 
             GridView1.DataSource = list;
@@ -77,9 +74,6 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             Label.Text = s.address;
             string suppliercode = s.suppliercode;
 
-            //List<string> itemcode = scService.getItemCodeBySupplierCode(suppliercode);
-            //List<Item> list = scService.getItemByListcode(itemcode);
-            //List<double> plist = scService.getPriceByListcode(itemcode);
 
             List<dynamic> list = scService.getTenderQuotation(suppliercode).ToList();
 
@@ -120,7 +114,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             int index = Convert.ToInt32(e.CommandArgument);
             bindGridView();
             GridView1.Rows[index].Attributes.Add("style", "background-color:#FDCB0A");
-            // GridView1.Rows[index].Attributes.Add("class", "mycustomclass");
+            
         }
         catch (Exception)
         {
@@ -128,36 +122,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
         }
     }
 
-    //protected void Modify_Click(object sender, EventArgs e)
-    //{
-    //    GridViewRow row = GridView1.SelectedRow;
-    //    TextBox1.Text = row.Cells[0].Text;
-    //    TextBox2.Text = row.Cells[1].Text;
-
-    //}
-
-    //protected void Create_Click(object sender, EventArgs e)
-    //{
-    //    TextBox1.Text = " ";
-    //    TextBox2.Text = " ";
-    //}
-
-    //protected void Delete_Click(object sender, EventArgs e)
-    //{
-    //    GridViewRow row = GridView1.SelectedRow;
-    //    string itemdescription = row.Cells[0].Text;
-
-    //    //TextBox1.Text = itemdescription;
-
-    //    Item i = scService.getItemByItemdescription(itemdescription);
-
-    //    TenderQuotation t = new TenderQuotation();
-    //    t.suppliercode = scService.getSupplierByName(DropDownList1.SelectedValue).suppliercode;
-    //    t.itemcode = i.itemcode;
-    //    t.price = Convert.ToDouble(row.Cells[1].Text);
-
-    //    scService.deleteTenderQuotation(t);
-    //}
+   
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -182,8 +147,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             GridViewRow row = GridView1.SelectedRow;
             string itemdescription = row.Cells[0].Text;
             Item i = scService.getItemByItemdescription(itemdescription);
-            //i.itemdescription = TextBox1.Text;
-
+            
 
             string suppliername = DropDownList1.SelectedValue;
             Supplier s = scService.getSupplierByName(suppliername);
@@ -192,8 +156,7 @@ public partial class SCupdateTenderInformation : System.Web.UI.Page
             tq.suppliercode = s.suppliercode;
             tq.itemcode = i.itemcode;
             tq.price = Convert.ToDouble(TextBox2.Text);
-            //scService.updateTenderQuotation(i, tq);
-
+           
 
             scService.updateTenderQuotation(tq);
             Response.Redirect("SCupdateTenderInformation.aspx");

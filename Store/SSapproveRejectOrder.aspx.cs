@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+//AUTHOR :Huang weian , Wang yuqi , Chua Ming Hao
 
 
 
@@ -17,8 +18,8 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
     int role;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             orders = ssmanager.findUnapprovedOrders();
@@ -39,17 +40,17 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
                     refreshGV2();
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void GridView2_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        //try
-        //{
+        try
+        {
             switch (e.CommandName)
             {
                 case "Details":
@@ -105,17 +106,17 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
                         break;
                     }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             foreach (SOrder i in orders)
             {
                 try
@@ -129,36 +130,36 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
             }
             refreshGV2();
             Label1.Text = "All orders approved today and are planned to deliver on " + DateTime.Parse(SSserviceManager.findThreeworkingday(DateTime.Today).ToString()).ToString("MM-dd-yyyy") + ".";
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
     protected void refreshGV2()
     {
-        //try
-        //{
+        try
+        {
             orders = ssmanager.findUnapprovedOrders();
             GridView2.DataSource = orders;
             GridView2.DataBind();
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             foreach (SOrder i in orders)
             {
                 int poNum = i.purchaseordernumber;
                 string toemail = i.Employee.employeeemail;
                 toemail = "hellocomplex007@gmail.com";
-                //ClassList.deleteOrderByPurchaseOrder(poNum);
+               
                 try
                 {
                     if (TextBox1.Text.Trim() == "")
@@ -175,10 +176,10 @@ public partial class SSapproveRejectOrder : System.Web.UI.Page
             TextBox1.Text = "";
             refreshGV2();
             Label1.Text = "All orders have been rejected.";
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+        }
+        catch (Exception)
+        {
+            Response.Redirect("~/Error.aspx");
+        }
     }
 }

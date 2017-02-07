@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Data;
 using Model;
 using System.Security.Principal;
-
+//AUTHOR- VISHAL CHANDRAMENAN BUVANA
 public partial class SCprocessRequest : System.Web.UI.Page
 {
     SCserviceManager sc = new SCserviceManager();
@@ -16,22 +16,16 @@ public partial class SCprocessRequest : System.Web.UI.Page
     //static int clerkcode;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+       
             IIdentity id = User.Identity;
             role = Convert.ToInt32(id.Name);
             if (!IsPostBack)
             {
-                //    clerkcode = Request.QueryString[];
-                //}
+                
                 List<string> unique = sc.getuniqueitems();
                 List<string> unique2 = sc.getuniqueitems2();
 
-                //List<string> unique = new List<string>();
-                //List<string> unique2 = new List<string>();
-
-
-
+                
 
                 dynamic MyDynamic = new System.Dynamic.ExpandoObject();
 
@@ -105,7 +99,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                         GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
                         GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
 
-                        // GridView1.DataBind();
+                       
                     }
                 }
                 else if (GridView1.Rows.Count > 2)
@@ -172,11 +166,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     Button1.Visible = false;
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+  
     }
 
 
@@ -185,8 +175,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
     private void GenerateUniqueData(int cellno)
     {
 
-        //try
-        //{
+      
             int z = 0;
             int j = 0;
             int y = 0;
@@ -289,7 +278,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                         TextBox tx = (TextBox)row.FindControl("Textfrom");
                         if (fla != K)
                         {
-                            //GridView1.Rows[j].Cells[7].Text = allocated[fla].ToString();
+                           
                             tx.Text = allocated[fla].ToString();
                         }
                         fla++;
@@ -316,7 +305,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                             {
                                 GridViewRow row = GridView1.Rows[j];
                                 TextBox tx = (TextBox)row.FindControl("Textfrom");
-                                //GridView1.Rows[j].Cells[7].Text = allocated[f].ToString();
+                              
                                 tx.Text = allocated[f].ToString();
                             }
                             fla++;
@@ -326,18 +315,12 @@ public partial class SCprocessRequest : System.Web.UI.Page
 
                 }
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
-
+    
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+       
             System.Threading.Thread.Sleep(1000);
             List<string> error = new List<string>();
             if (GridView1.Rows.Count != 0)
@@ -423,7 +406,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     disb.representativecode = repcode;
                     disb.deptcode = dept;
                     disbid = sc.addtodisbursement(disb);
-                    sc.sendMailToEmployee("Your requisition has been accepted and delivery is being performed.", sc.getRepresentativeEmail(repcode));
+               
 
                     GridViewRow row = GridView1.Rows[i];
                     TextBox tx = (TextBox)row.FindControl("Textfrom");
@@ -534,20 +517,15 @@ public partial class SCprocessRequest : System.Web.UI.Page
             }
             else if (error.Count > 0)
             {
-                //string s = "";
-                //  BulletedList1.Items.Add("Allocation Exceeded the Actual Quantity");
+               
                 for (int i = 0; i < error.Count; i++)
                 {
                     BulletedList1.Items.Add(error[i]);
                 }
-                // Label1.Text = s;
+               
 
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+   
     }
 
 
@@ -557,8 +535,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        
             Button2.Visible = false;
             Button3.Visible = true;
             Button1.Visible = true;
@@ -595,8 +572,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     GridView1.Rows[i + 1].Cells[6].Text = string.Empty;
                     GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
                     GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
-
-                    // GridView1.DataBind();
+                
                 }
             }
             else if (GridView1.Rows.Count > 2)
@@ -661,18 +637,13 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button3.Visible = true;
                 Button1.Visible = false;
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+    
 
     }
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        //try
-        //{
+        
             Button3.Visible = false;
             Button2.Visible = true;
             List<string> unique = sc.getuniqueitems();
@@ -710,7 +681,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                     GridView1.Rows[i + 1].Cells[7].Text = string.Empty;
                     GridView1.Rows[i + 1].Cells[8].Text = string.Empty;
 
-                    // GridView1.DataBind();
+                    
                 }
             }
             else if (GridView1.Rows.Count > 2)
@@ -776,11 +747,7 @@ public partial class SCprocessRequest : System.Web.UI.Page
                 Button1.Visible = false;
 
             }
-        //}
-        //catch (Exception)
-        //{
-        //    Response.Redirect("~/Error.aspx");
-        //}
+   
 
     }
 }

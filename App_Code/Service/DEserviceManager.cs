@@ -51,12 +51,10 @@ public class DEserviceManager
     {
         SmtpClient smtpClient = new SmtpClient("lynx.class.iss.nus.edu.sg", 25);
         MailMessage mail = new MailMessage();
-        // string reason = TextBox1.Text;
+    
         try
         {
             mail.Body = message;
-
-            //Setting From , To and CC
             mail.From = new MailAddress("zhuliana@gmail.com");
             mail.To.Add(new MailAddress("zhuliana@gmail.com"));
 
